@@ -1,5 +1,5 @@
 (function () {
-  const email = "your.email@example.com"; // <-- replace
+  const email = "karan1011seroy@gmail.com";
   const emailText = document.getElementById("emailText");
   if (emailText) emailText.textContent = email;
 

@@ -3,157 +3,130 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Karan S — ML Engineer</title>
-  <meta name="description" content="ML Engineer: models, data, and systems. Portfolio + projects + contact." />
+  <title>Karan Seroy — ML Engineer</title>
+  <meta name="description" content="Machine Learning Engineer focused on evaluation-first systems, LLM optimization, and production-grade ML pipelines." />
 
-  <!-- Social previews -->
-  <meta property="og:title" content="Karan S — ML Engineer" />
-  <meta property="og:description" content="Models, data, and systems. Portfolio + projects + contact." />
+  <meta property="og:title" content="Karan Seroy — ML Engineer" />
+  <meta property="og:description" content="Evaluation-first ML systems. LLM optimization. Production pipelines." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ks6573.github.io/" />
 
-  <link rel="icon" href="data:," />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
 <body>
-  <a class="skip-link" href="#content">Skip to content</a>
-
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <div class="avatar" aria-hidden="true"></div>
+        <div class="avatar"></div>
         <div>
-          <div class="name">Karan S</div>
-          <div class="role">ML Engineer</div>
+          <div class="name">Karan Seroy</div>
+          <div class="role">Machine Learning Engineer</div>
         </div>
       </div>
 
       <nav class="nav">
         <a href="#projects">Projects</a>
-        <a href="#writing">Writing</a>
         <a href="#about">About</a>
         <a href="#contact" class="btn">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main id="content" class="container">
+  <main class="container">
+
+    <!-- HERO -->
     <section class="hero">
       <h1>
-        I build reliable ML systems:
-        <span class="muted">data → training → deployment → monitoring.</span>
+        ML engineering with a bias for
+        <span class="muted">clean evaluation, reliable pipelines, and measurable impact.</span>
       </h1>
 
       <p class="lead">
-        Focused on pragmatic modeling, scalable pipelines, and clean engineering.
-        Currently exploring NLP/chatbots and market modeling.
+        I build and ship ML systems end-to-end: data → training → evaluation → deployment.
+        At cPacket (AI/ML R&D), I developed an LLM prompt optimizer that improved prompt
+        quality up to <strong>78%</strong> and reduced token usage by <strong>30%</strong>
+        across Gemini, GPT, and Claude-class models.
       </p>
 
       <div class="hero-actions">
-        <a class="btn" href="#projects">View projects</a>
-        <a class="btn secondary" href="https://github.com/ks6573" target="_blank" rel="noreferrer">GitHub</a>
-        <button class="btn ghost" id="copyEmail" type="button" aria-label="Copy email">Copy email</button>
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn secondary" href="https://github.com/ks6573" target="_blank">GitHub</a>
+        <a class="btn secondary" href="https://linkedin.com/in/karan-seroy/" target="_blank">LinkedIn</a>
       </div>
 
-      <div class="chips" aria-label="Core skills">
+      <div class="chips">
         <span class="chip">Python</span>
         <span class="chip">PyTorch</span>
+        <span class="chip">scikit-learn</span>
+        <span class="chip">XGBoost</span>
         <span class="chip">LLMs</span>
-        <span class="chip">Feature engineering</span>
-        <span class="chip">MLOps</span>
-        <span class="chip">AWS/GCP</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Kubernetes</span>
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects" class="section">
       <div class="section-head">
-        <h2>Projects</h2>
-        <div class="filters">
-          <input id="projectSearch" type="search" placeholder="Search projects…" autocomplete="off" />
-        </div>
+        <h2>Selected Projects</h2>
       </div>
 
-      <div class="grid" id="projectGrid">
-        <!-- Project card -->
-        <article class="card" data-tags="ml,finance,ensemble,python">
+      <div class="grid">
+
+        <article class="card">
           <div class="card-top">
-            <h3>OptionsTitan</h3>
-            <span class="pill">ML • Finance</span>
+            <h3>LLM System Prompt Optimizer</h3>
+            <span class="pill">AI / R&D</span>
           </div>
           <p>
-            Ensemble modeling for options strategies with feature engineering, SHAP explainability, and backtesting.
+            Built evaluation-driven prompt optimization system using DAG-based tests,
+            ground-truth I/O pairs, and DeepEval. Achieved up to 78% improvement in prompt
+            quality and 30% reduction in token usage across multiple frontier models.
           </p>
           <div class="meta">
-            <span>Python</span><span>•</span><span>XGBoost/LightGBM</span><span>•</span><span>SHAP</span>
-          </div>
-          <div class="links">
-            <a href="https://github.com/ks6573/OptionsTitan" target="_blank" rel="noreferrer">Repo</a>
-            <a href="#" aria-disabled="true" class="disabled">Demo</a>
+            <span>LLMs</span><span>•</span>
+            <span>Evaluation</span><span>•</span>
+            <span>Prompt Engineering</span>
           </div>
         </article>
 
-        <article class="card" data-tags="nlp,llm,chatbot,python">
+        <article class="card">
           <div class="card-top">
-            <h3>SlangBridge</h3>
-            <span class="pill">NLP • LLMs</span>
+            <h3>Job Posting Validator</h3>
+            <span class="pill">ML Classification</span>
           </div>
           <p>
-            Slang-aware chatbot with a custom pipeline (scraping, normalization, retrieval, evaluation).
+            Random Forest-based model detecting fraudulent job postings across multiple
+            scraped job boards. Achieved F1 score of 0.71 through targeted feature engineering.
           </p>
           <div class="meta">
-            <span>Python</span><span>•</span><span>RAG</span><span>•</span><span>Evaluation</span>
-          </div>
-          <div class="links">
-            <a href="https://github.com/ks6573/SlangBridge" target="_blank" rel="noreferrer">Repo</a>
-            <a href="#" aria-disabled="true" class="disabled">Demo</a>
+            <span>scikit-learn</span><span>•</span>
+            <span>Feature Engineering</span><span>•</span>
+            <span>Web Scraping</span>
           </div>
         </article>
 
-        <article class="card" data-tags="mlops,data,pipelines,infra">
+        <article class="card">
           <div class="card-top">
-            <h3>Pipeline Templates</h3>
-            <span class="pill">MLOps</span>
+            <h3>Password Strength Verification</h3>
+            <span class="pill">Applied ML</span>
           </div>
           <p>
-            Opinionated templates for training jobs, experiment tracking, and reproducible runs.
+            Local password strength analyzer estimating entropy, brute-force time,
+            and character diversity using engineered features and Random Forest classification.
           </p>
           <div class="meta">
-            <span>Docker</span><span>•</span><span>CI</span><span>•</span><span>Tracking</span>
-          </div>
-          <div class="links">
-            <a href="https://github.com/ks6573" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="#" aria-disabled="true" class="disabled">Docs</a>
+            <span>Random Forest</span><span>•</span>
+            <span>Security Modeling</span>
           </div>
         </article>
+
       </div>
     </section>
 
-    <section id="writing" class="section">
-      <div class="section-head">
-        <h2>Writing</h2>
-        <p class="muted">Short notes. Clear takeaways. Minimal fluff.</p>
-      </div>
-
-      <div class="stack">
-        <a class="row" href="#" aria-disabled="true">
-          <div>
-            <div class="row-title">How I evaluate ML pipelines in production</div>
-            <div class="row-sub">Monitoring, drift, and feedback loops.</div>
-          </div>
-          <span class="row-right">Soon</span>
-        </a>
-
-        <a class="row" href="#" aria-disabled="true">
-          <div>
-            <div class="row-title">Feature engineering that actually moves metrics</div>
-            <div class="row-sub">Less magic, more signal.</div>
-          </div>
-          <span class="row-right">Soon</span>
-        </a>
-      </div>
-    </section>
-
+    <!-- ABOUT -->
     <section id="about" class="section">
       <div class="section-head">
         <h2>About</h2>
@@ -161,56 +134,50 @@
 
       <div class="two-col">
         <div class="card soft">
-          <h3>What I optimize for</h3>
-          <ul class="list">
-            <li>Predictable systems over clever hacks</li>
-            <li>Reproducibility and strong baselines</li>
-            <li>Good metrics and honest evaluation</li>
-            <li>Simple deployment and observability</li>
-          </ul>
+          <h3>Background</h3>
+          <p class="muted">
+            I’m currently pursuing a Master of Science in Data Science at Rochester Institute of Technology
+            after completing a Bachelor’s in Management Information Systems.
+          </p>
+
+          <p class="muted" style="margin-top: 12px;">
+            My experience spans AI/ML R&D (cPacket Networks), cyber risk consulting (PwC),
+            and business systems analysis (Iovance Biotherapeutics). I focus on measurable ML
+            improvements, evaluation-first design, and production-aware system building.
+          </p>
         </div>
 
         <div class="card soft">
-          <h3>Tooling</h3>
+          <h3>What I Optimize For</h3>
           <ul class="list">
-            <li>PyTorch, scikit-learn, XGBoost/LightGBM</li>
-            <li>SQL, Spark, Airflow, Dagster</li>
-            <li>Docker, CI/CD, experiment tracking</li>
-            <li>AWS/GCP basics, infra pragmatism</li>
+            <li>Evaluation-first ML systems</li>
+            <li>Strong baselines and practical modeling</li>
+            <li>Reproducible training workflows</li>
+            <li>Clean deployment and observability</li>
+            <li>Data integrity and reliability</li>
           </ul>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="section">
       <div class="section-head">
         <h2>Contact</h2>
-        <p class="muted">Best way: email. Otherwise: GitHub/LinkedIn.</p>
       </div>
 
-      <div class="contact-card card">
-        <div class="contact-row">
-          <div>
-            <div class="label">Email</div>
-            <div class="value" id="emailText">your.email@example.com</div>
-          </div>
-          <button class="btn secondary" id="copyEmail2" type="button">Copy</button>
-        </div>
-
-        <div class="contact-links">
-          <a href="https://github.com/ks6573" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="#" aria-disabled="true" class="disabled">LinkedIn</a>
-          <a href="#" aria-disabled="true" class="disabled">Resume</a>
-        </div>
+      <div class="card">
+        <p><strong>Email:</strong> ks6573@rit.edu</p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/ks6573" target="_blank">github.com/ks6573</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/karan-seroy/" target="_blank">linkedin.com/in/karan-seroy</a></p>
       </div>
     </section>
 
     <footer class="footer">
-      <div class="muted">© <span id="year"></span> Karan S. Built with plain HTML/CSS.</div>
-      <div class="muted small">Last updated: <span id="updated"></span></div>
+      <div class="muted">© 2026 Karan Seroy</div>
     </footer>
+
   </main>
 
-  <script src="assets/js/main.js"></script>
 </body>
 </html>
