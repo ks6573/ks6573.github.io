@@ -1,5 +1,21 @@
 # ks6573.github.io
 
-Minimal portfolio site (static HTML/CSS/JS).
+Portfolio site built with React + Vite.
 
-Live: https://ks6573.github.io
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Deploy
+
+Deploy the generated `dist/` directory (GitHub Pages, Netlify, Vercel, etc.).
