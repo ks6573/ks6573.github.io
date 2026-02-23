@@ -18,4 +18,10 @@ npm run preview
 
 ## Deploy
 
-Deploy the generated `dist/` directory (GitHub Pages, Netlify, Vercel, etc.).
+This repo includes a workflow at `.github/workflows/deploy-pages.yml` that builds and deploys to GitHub Pages on every push to `main`.
+
+For GitHub Pages:
+
+1. Push to `main`.
+2. In GitHub: `Settings` -> `Pages` -> `Build and deployment`.
+3. Set `Source` to `GitHub Actions`.
