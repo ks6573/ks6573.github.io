@@ -14,7 +14,7 @@ const projects = [
     title: "LLM System Prompt Optimizer",
     pill: "AI / R&D",
     description:
-      "Built evaluation-driven prompt optimization system using DAG-based tests, ground-truth I/O pairs, and DeepEval. Achieved up to 78% improvement in prompt quality and 30% reduction in token usage across multiple frontier models.",
+      "Built evaluation-driven prompt optimization system using DAG-based tests, ground-truth I/O pairs, and DeepEval. Achieved 78% improvement in prompt quality and 30% reduction in token usage across multiple frontier models.",
     meta: ["LLMs", "Evaluation", "Prompt Engineering"],
   },
   {
