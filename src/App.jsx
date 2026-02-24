@@ -34,7 +34,7 @@ function App() {
 
           <nav className="nav">
             <a href="./projects.html">Projects</a>
-            <a href="#about">About</a>
+            <a href="./about.html">About</a>
             <a href="#contact" className="btn">
               Contact
             </a>
@@ -105,7 +105,7 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="section">
+        <section className="section">
           <div className="section-head">
             <h2>About</h2>
           </div>
@@ -125,6 +125,12 @@ function App() {
                 measurable ML improvements, evaluation-first design, and production-aware
                 system building.
               </p>
+
+              <div className="hero-actions">
+                <a className="btn" href="./about.html">
+                  Read Full About Page
+                </a>
+              </div>
             </div>
 
             <div className="card soft">

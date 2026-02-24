@@ -86,6 +86,7 @@ function ProjectsPage() {
           <nav className="nav">
             <a href="./index.html">Home</a>
             <a href="./projects.html">Projects</a>
+            <a href="./about.html">About</a>
             <a href="./index.html#contact" className="btn">
               Contact
             </a>
@@ -103,6 +104,11 @@ function ProjectsPage() {
             Selected project highlights plus the latest repositories from GitHub. This page
             updates your recent repository list automatically.
           </p>
+          <div className="hero-actions">
+            <a className="btn secondary" href="./about.html">
+              About Me
+            </a>
+          </div>
         </section>
 
         <section className="section">
