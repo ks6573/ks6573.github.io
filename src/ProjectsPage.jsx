@@ -103,8 +103,7 @@ function ProjectsPage() {
             <span className="muted"> focused on practical, measurable ML outcomes.</span>
           </h1>
           <p className="lead">
-            Selected project highlights plus the latest repositories from GitHub. This page
-            updates your recent repository list automatically.
+            Explore selected ML projects and the newest repositories from my GitHub profile.
           </p>
           <div className="hero-actions">
             <a className="btn secondary" href="./about.html">
