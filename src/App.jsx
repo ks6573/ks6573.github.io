@@ -115,7 +115,7 @@ function App() {
 
         <section id="projects" className="section">
           <div className="section-head">
-            <h2>Selected Projects</h2>
+            <h2>Some cool stuff</h2>
           </div>
 
           <div className="grid">
