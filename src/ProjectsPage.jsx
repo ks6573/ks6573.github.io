@@ -85,7 +85,9 @@ function ProjectsPage() {
 
           <nav className="nav">
             <a href="./index.html">Home</a>
-            <a href="./projects.html">Projects</a>
+            <span className="nav-current" aria-current="page">
+              Projects
+            </span>
             <a href="./about.html">About</a>
             <a href="./index.html#contact" className="btn">
               Contact

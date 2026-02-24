@@ -69,7 +69,9 @@ function AboutPage() {
           <nav className="nav">
             <a href="./index.html">Home</a>
             <a href="./projects.html">Projects</a>
-            <a href="./about.html">About</a>
+            <span className="nav-current" aria-current="page">
+              About
+            </span>
             <a href="./index.html#contact" className="btn">
               Contact
             </a>

@@ -12,6 +12,7 @@
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+html{ overflow-y: scroll; }
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -68,6 +69,10 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 .nav{ display:flex; align-items:center; gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
 .nav a{ color: var(--muted); font-weight: 520; }
 .nav a:hover{ color: var(--text); text-decoration:none; }
+.nav-current{
+  color: var(--text);
+  font-weight: 650;
+}
 
 .btn{
   display:inline-flex; align-items:center; justify-content:center;

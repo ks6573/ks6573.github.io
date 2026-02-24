@@ -33,6 +33,9 @@ function App() {
           </div>
 
           <nav className="nav">
+            <span className="nav-current" aria-current="page">
+              Home
+            </span>
             <a href="./projects.html">Projects</a>
             <a href="./about.html">About</a>
             <a href="#contact" className="btn">
@@ -86,22 +89,6 @@ function App() {
                 {skill}
               </span>
             ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="card">
-            <div className="section-head">
-              <h2>Projects</h2>
-            </div>
-            <p className="muted">
-              I moved project details to a dedicated page so it is easier to browse and share.
-            </p>
-            <div className="hero-actions">
-              <a className="btn" href="./projects.html">
-                Open Projects Page
-              </a>
-            </div>
           </div>
         </section>
 
