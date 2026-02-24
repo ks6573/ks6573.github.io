@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const skills = [
   "Python",
   "PyTorch",
@@ -41,8 +43,52 @@ const focusAreas = [
   "Data integrity and reliability",
 ];
 
+const GITHUB_USERNAME = "ks6573";
+
 function App() {
   const year = new Date().getFullYear();
+  const [githubRepos, setGithubRepos] = useState([]);
+  const [repoLoadError, setRepoLoadError] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadRepos() {
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=desc&per_page=8`,
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to load repositories");
+        }
+
+        const data = await response.json();
+        if (!Array.isArray(data)) {
+          throw new Error("Unexpected GitHub API response");
+        }
+
+        const newestRepos = data
+          .filter((repo) => !repo.fork && repo.name !== "ks6573.github.io")
+          .slice(0, 3);
+
+        if (isMounted) {
+          setGithubRepos(newestRepos);
+          setRepoLoadError(false);
+        }
+      } catch (_error) {
+        if (isMounted) {
+          setRepoLoadError(true);
+        }
+      }
+    }
+
+    loadRepos();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <>
@@ -136,6 +182,61 @@ function App() {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-head">
+            <h2>Latest GitHub Repositories</h2>
+          </div>
+
+          <div className="grid">
+            {githubRepos.map((repo) => (
+              <article key={repo.id} className="card">
+                <div className="card-top">
+                  <h3>{repo.name}</h3>
+                  <span className="pill">GitHub</span>
+                </div>
+                <p>{repo.description || "No description added yet."}</p>
+                <div className="meta">
+                  <span>{repo.language || "Code"}</span>
+                  <span>•</span>
+                  <span>
+                    Updated{" "}
+                    {new Date(repo.pushed_at).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                      day: "2-digit",
+                    })}
+                  </span>
+                </div>
+                <div className="links">
+                  <a href={repo.html_url} target="_blank" rel="noreferrer">
+                    View repository
+                  </a>
+                </div>
+              </article>
+            ))}
+
+            {!repoLoadError && githubRepos.length === 0 && (
+              <article className="card">
+                <p className="muted">Loading latest repositories...</p>
+              </article>
+            )}
+
+            {repoLoadError && (
+              <article className="card">
+                <p className="muted">
+                  Couldn’t load repositories right now. You can still browse everything on
+                  GitHub.
+                </p>
+                <div className="links">
+                  <a href="https://github.com/ks6573" target="_blank" rel="noreferrer">
+                    github.com/ks6573
+                  </a>
+                </div>
+              </article>
+            )}
           </div>
         </section>
 
