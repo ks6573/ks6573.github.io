@@ -1,12 +1,12 @@
 :root{
-  --bg: #0b0f17;
-  --panel: #0f1623;
-  --panel2: #0c1220;
-  --text: #e6edf3;
-  --muted: #9aa4b2;
-  --border: rgba(255,255,255,.08);
-  --accent: #7dd3fc;
-  --shadow: 0 12px 30px rgba(0,0,0,.35);
+  --bg: #f4f7fb;
+  --panel: #ffffff;
+  --panel2: #eef3fb;
+  --text: #0f172a;
+  --muted: #51627a;
+  --border: rgba(15,23,42,.14);
+  --accent: #0b57d0;
+  --shadow: 0 10px 26px rgba(15,23,42,.08);
   --radius: 16px;
 }
 
@@ -15,8 +15,8 @@ html,body{ height:100%; }
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  background: radial-gradient(1200px 700px at 20% 0%, rgba(125,211,252,.10), transparent 60%),
-              radial-gradient(900px 600px at 80% 10%, rgba(167,139,250,.10), transparent 55%),
+  background: radial-gradient(1200px 700px at 20% 0%, rgba(11,87,208,.10), transparent 60%),
+              radial-gradient(900px 600px at 80% 10%, rgba(56,189,248,.10), transparent 55%),
               var(--bg);
   color: var(--text);
   line-height:1.55;
@@ -41,7 +41,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   top:0;
   z-index:10;
   backdrop-filter: blur(12px);
-  background: rgba(11,15,23,.65);
+  background: rgba(244,247,251,.86);
   border-bottom: 1px solid var(--border);
 }
 .header-inner{
@@ -59,7 +59,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   background:
     radial-gradient(circle at 30% 30%, rgba(125,211,252,.9), transparent 60%),
     radial-gradient(circle at 70% 70%, rgba(167,139,250,.7), transparent 55%),
-    rgba(255,255,255,.06);
+    rgba(255,255,255,.8);
   border: 1px solid var(--border);
 }
 .name{ font-weight: 650; letter-spacing: .2px; }
@@ -74,14 +74,14 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: rgba(255,255,255,.06);
+  background: rgba(15,23,42,.05);
   box-shadow: none;
   color: var(--text);
   font-weight: 600;
   cursor: pointer;
 }
 .btn:hover{
-  background: rgba(255,255,255,.10);
+  background: rgba(15,23,42,.09);
   text-decoration:none;
 }
 .btn.secondary{
@@ -89,7 +89,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 }
 .btn.ghost{
   background: transparent;
-  border: 1px dashed rgba(255,255,255,.18);
+  border: 1px dashed rgba(15,23,42,.2);
   color: var(--muted);
 }
 .btn.ghost:hover{ color: var(--text); }
@@ -126,7 +126,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   padding: 7px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: rgba(255,255,255,.04);
+  background: rgba(15,23,42,.04);
 }
 
 .section{
@@ -150,11 +150,11 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid var(--border);
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.88);
   color: var(--text);
   outline: none;
 }
-.filters input::placeholder{ color: rgba(154,164,178,.8); }
+.filters input::placeholder{ color: rgba(71,85,105,.7); }
 
 .grid{
   display:grid;
@@ -170,13 +170,13 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
 .card{
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
   border-radius: var(--radius);
   padding: 16px;
   box-shadow: var(--shadow);
 }
 .card.soft{
-  background: rgba(255,255,255,.04);
+  background: var(--panel2);
   box-shadow: none;
 }
 
@@ -193,9 +193,9 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 }
 .pill{
   font-size: .82rem;
-  color: rgba(230,237,243,.9);
-  background: rgba(125,211,252,.10);
-  border: 1px solid rgba(125,211,252,.18);
+  color: #0f3b7a;
+  background: rgba(11,87,208,.10);
+  border: 1px solid rgba(11,87,208,.2);
   padding: 5px 10px;
   border-radius: 999px;
   white-space: nowrap;
@@ -203,7 +203,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
 .card p{ color: var(--muted); margin: 10px 0 10px; }
 .meta{
-  color: rgba(154,164,178,.9);
+  color: rgba(71,85,105,.92);
   font-size: .92rem;
   display:flex;
   gap: 8px;
@@ -233,9 +233,9 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   padding: 14px 16px;
   border-radius: 14px;
   border: 1px solid var(--border);
-  background: rgba(255,255,255,.035);
+  background: rgba(15,23,42,.03);
 }
-.row:hover{ background: rgba(255,255,255,.055); text-decoration:none; }
+.row:hover{ background: rgba(15,23,42,.06); text-decoration:none; }
 .row-title{ font-weight: 650; }
 .row-sub{ color: var(--muted); font-size: .95rem; margin-top: 4px; }
 .row-right{ color: rgba(154,164,178,.8); font-size: .92rem; }
@@ -261,7 +261,7 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   border-bottom: 1px solid var(--border);
   margin-bottom: 14px;
 }
-.label{ color: rgba(154,164,178,.85); font-size: .92rem; }
+.label{ color: rgba(71,85,105,.9); font-size: .92rem; }
 .value{ font-weight: 650; letter-spacing: .1px; }
 
 .contact-links{
