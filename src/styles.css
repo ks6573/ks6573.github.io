@@ -1,5 +1,9 @@
 :root{
   --bg: #f4f7fb;
+  --bg-gradient:
+    radial-gradient(1100px 620px at 14% -8%, rgba(11,87,208,.13), transparent 62%),
+    radial-gradient(920px 560px at 86% 4%, rgba(56,189,248,.12), transparent 58%),
+    linear-gradient(180deg, #f8fbff 0%, #f4f7fb 48%, #f1f6ff 100%);
   --panel: #ffffff;
   --panel2: #eef3fb;
   --text: #0f172a;
@@ -16,9 +20,11 @@ html{ overflow-y: scroll; }
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  background: radial-gradient(1200px 700px at 20% 0%, rgba(11,87,208,.10), transparent 60%),
-              radial-gradient(900px 600px at 80% 10%, rgba(56,189,248,.10), transparent 55%),
-              var(--bg);
+  background: var(--bg-gradient);
+  background-color: var(--bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   color: var(--text);
   line-height:1.55;
 }
@@ -278,7 +284,6 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 
 .footer{
   padding: 34px 0 60px;
-  border-top: 1px solid var(--border);
   margin-top: 10px;
   display:flex;
   justify-content: space-between;
