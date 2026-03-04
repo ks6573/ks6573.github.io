@@ -38,7 +38,7 @@ function App() {
             </span>
             <a href="./projects.html">Projects</a>
             <a href="./about.html">About</a>
-            <a href="#contact" className="btn">
+            <a href="./contact.html" className="btn">
               Contact
             </a>
           </nav>
@@ -128,34 +128,6 @@ function App() {
                 ))}
               </ul>
             </div>
-          </div>
-        </section>
-
-        <section id="contact" className="section">
-          <div className="section-head">
-            <h2>Contact</h2>
-          </div>
-
-          <div className="card">
-            <p>
-              <strong>Email:</strong> karan1011seroy@gmail.com
-            </p>
-            <p>
-              <strong>GitHub:</strong>{" "}
-              <a href="https://github.com/ks6573" target="_blank" rel="noreferrer">
-                github.com/ks6573
-              </a>
-            </p>
-            <p>
-              <strong>LinkedIn:</strong>{" "}
-              <a
-                href="https://linkedin.com/in/karan-seroy/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                linkedin.com/in/karan-seroy
-              </a>
-            </p>
           </div>
         </section>
 

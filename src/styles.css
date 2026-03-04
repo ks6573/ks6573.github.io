@@ -272,6 +272,11 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   border-bottom: 1px solid var(--border);
   margin-bottom: 14px;
 }
+.contact-row-last{
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 .label{ color: rgba(71,85,105,.9); font-size: .92rem; }
 .value{ font-weight: 650; letter-spacing: .1px; }
 

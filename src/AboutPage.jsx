@@ -72,7 +72,7 @@ function AboutPage() {
             <span className="nav-current" aria-current="page">
               About
             </span>
-            <a href="./index.html#contact" className="btn">
+            <a href="./contact.html" className="btn">
               Contact
             </a>
           </nav>
@@ -196,34 +196,6 @@ function AboutPage() {
                 {item}
               </span>
             ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section-head">
-            <h2>Contact</h2>
-          </div>
-
-          <div className="card">
-            <p>
-              <strong>Email:</strong> karan1011seroy@gmail.com
-            </p>
-            <p>
-              <strong>GitHub:</strong>{" "}
-              <a href="https://github.com/ks6573" target="_blank" rel="noreferrer">
-                github.com/ks6573
-              </a>
-            </p>
-            <p>
-              <strong>LinkedIn:</strong>{" "}
-              <a
-                href="https://linkedin.com/in/karan-seroy/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                linkedin.com/in/karan-seroy
-              </a>
-            </p>
           </div>
         </section>
 

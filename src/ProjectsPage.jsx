@@ -2,25 +2,36 @@ import { useEffect, useState } from "react";
 
 const projects = [
   {
-    title: "LLM System Prompt Optimizer",
-    pill: "AI / R&D",
+    title: "SyscontrolMCP",
+    pill: "MCP / Systems",
     description:
-      "Built evaluation-driven prompt optimization system using DAG-based tests, ground-truth I/O pairs, and DeepEval. Achieved 78% improvement in prompt quality and 30% reduction in token usage across multiple frontier models.",
-    meta: ["LLMs", "Evaluation", "Prompt Engineering"],
+      "Model Context Protocol (MCP) server providing real-time system metrics (CPU, RAM, GPU, disk, network, and processes) for context-aware performance insights.",
+    meta: ["Python", "MCP", "System Metrics"],
+    url: "https://github.com/ks6573/SyscontrolMCP",
   },
   {
-    title: "Job Posting Validator",
-    pill: "ML Classification",
+    title: "PerformanceIntelligence",
+    pill: "Performance / Tooling",
     description:
-      "Random Forest-based model detecting fraudulent job postings across multiple scraped job boards. Achieved F1 score of 0.71 through targeted feature engineering.",
-    meta: ["scikit-learn", "Feature Engineering", "Web Scraping"],
+      "Early-stage repository for performance intelligence workflows and profiling-driven optimization experiments.",
+    meta: ["Swift", "Profiling", "In Progress"],
+    url: "https://github.com/ks6573/PerformanceIntelligence",
   },
   {
-    title: "Password Strength Verification",
+    title: "OptionsTitan",
+    pill: "Quant / ML",
+    description:
+      "Python-based options prediction and strategy modeling system using engineered features like Greeks, technical indicators, and VIX regimes.",
+    meta: ["Python", "Options Modeling", "Feature Engineering"],
+    url: "https://github.com/ks6573/OptionsTitan",
+  },
+  {
+    title: "PSA",
     pill: "Applied ML",
     description:
-      "Local password strength analyzer estimating entropy, brute-force time, and character diversity using engineered features and Random Forest classification.",
-    meta: ["Random Forest", "Security Modeling"],
+      "Password Strength Analyzer that uses machine learning to assess and visualize password robustness.",
+    meta: ["Python", "Security", "Machine Learning"],
+    url: "https://github.com/ks6573/PSA",
   },
 ];
 
@@ -89,7 +100,7 @@ function ProjectsPage() {
               Projects
             </span>
             <a href="./about.html">About</a>
-            <a href="./index.html#contact" className="btn">
+            <a href="./contact.html" className="btn">
               Contact
             </a>
           </nav>
@@ -132,6 +143,11 @@ function ProjectsPage() {
                       {item}
                     </span>
                   ))}
+                </div>
+                <div className="links">
+                  <a href={project.url} target="_blank" rel="noreferrer">
+                    View repository
+                  </a>
                 </div>
               </article>
             ))}
