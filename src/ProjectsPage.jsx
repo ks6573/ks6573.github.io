@@ -48,7 +48,7 @@ function ProjectsPage() {
     async function loadRepos() {
       try {
         const response = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=created&direction=desc&per_page=8`,
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=8`,
         );
 
         if (!response.ok) {
@@ -82,6 +82,37 @@ function ProjectsPage() {
     };
   }, []);
 
+  const selectedProjectNames = new Set(projects.map((project) => project.title.toLowerCase()));
+
+  const mergedProjects = [
+    ...projects.map((project) => ({
+      key: `selected-${project.title}`,
+      title: project.title,
+      pill: project.pill,
+      description: project.description,
+      meta: project.meta,
+      url: project.url,
+    })),
+    ...githubRepos
+      .filter((repo) => !selectedProjectNames.has(repo.name.toLowerCase()))
+      .slice(0, 4)
+      .map((repo) => ({
+        key: `repo-${repo.id}`,
+        title: repo.name,
+        pill: "Recent GitHub",
+        description: repo.description || "No description added yet.",
+        meta: [
+          repo.language || "Code",
+          `Updated ${new Date(repo.pushed_at).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+          })}`,
+        ],
+        url: repo.html_url,
+      })),
+  ];
+
   return (
     <>
       <header className="site-header">
@@ -114,7 +145,8 @@ function ProjectsPage() {
             <span className="muted"> focused on practical, measurable ML outcomes.</span>
           </h1>
           <p className="lead">
-            Explore selected ML projects and the newest repositories from my GitHub profile.
+            Check out a few ML projects I’ve worked on, plus the latest stuff I’m shipping on
+            GitHub.
           </p>
           <div className="hero-actions">
             <a className="btn secondary" href="./about.html">
@@ -125,12 +157,12 @@ function ProjectsPage() {
 
         <section className="section">
           <div className="section-head">
-            <h2>Selected Projects</h2>
+            <h2>Featured & Recent Work</h2>
           </div>
 
           <div className="grid">
-            {projects.map((project) => (
-              <article key={project.title} className="card">
+            {mergedProjects.map((project) => (
+              <article key={project.key} className="card">
                 <div className="card-top">
                   <h3>{project.title}</h3>
                   <span className="pill">{project.pill}</span>
@@ -151,62 +183,20 @@ function ProjectsPage() {
                 </div>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section-head">
-            <h2>Latest GitHub Repositories</h2>
-          </div>
-
-          <div className="grid">
-            {githubRepos.map((repo) => (
-              <article key={repo.id} className="card">
-                <div className="card-top">
-                  <h3>{repo.name}</h3>
-                  <span className="pill">GitHub</span>
-                </div>
-                <p>{repo.description || "No description added yet."}</p>
-                <div className="meta">
-                  <span>{repo.language || "Code"}</span>
-                  <span>•</span>
-                  <span>
-                    Updated{" "}
-                    {new Date(repo.pushed_at).toLocaleDateString(undefined, {
-                      year: "numeric",
-                      month: "short",
-                      day: "2-digit",
-                    })}
-                  </span>
-                </div>
-                <div className="links">
-                  <a href={repo.html_url} target="_blank" rel="noreferrer">
-                    View repository
-                  </a>
-                </div>
-              </article>
-            ))}
 
             {!repoLoadError && githubRepos.length === 0 && (
               <article className="card">
-                <p className="muted">Loading latest repositories...</p>
-              </article>
-            )}
-
-            {repoLoadError && (
-              <article className="card">
-                <p className="muted">
-                  Couldn’t load repositories right now. You can still browse everything on
-                  GitHub.
-                </p>
-                <div className="links">
-                  <a href="https://github.com/ks6573" target="_blank" rel="noreferrer">
-                    github.com/ks6573
-                  </a>
-                </div>
+                <p className="muted">Loading latest GitHub repositories...</p>
               </article>
             )}
           </div>
+
+          {repoLoadError && (
+            <p className="muted small">
+              Live GitHub updates are unavailable right now. Featured projects above are still
+              up to date.
+            </p>
+          )}
         </section>
 
         <footer className="footer">

@@ -10,11 +10,36 @@ const skills = [
 ];
 
 const focusAreas = [
-  "Evaluation-first ML systems",
-  "Strong baselines and practical modeling",
-  "Reproducible training workflows",
-  "Clean deployment and observability",
-  "Data integrity and reliability",
+  {
+    title: "Evaluation-first ML systems",
+    detail:
+      "Define success metrics, test cases, and failure modes up front before model iteration.",
+  },
+  {
+    title: "Strong baselines and practical modeling",
+    detail:
+      "Start simple, prove lift quickly, and add complexity only when metrics clearly improve.",
+  },
+  {
+    title: "Reproducible training workflows",
+    detail:
+      "Track data, configs, and runs so experiments are repeatable and easy to audit.",
+  },
+  {
+    title: "Deployment and observability",
+    detail:
+      "Monitor latency, quality, drift, and cost continuously after launch, not just before it.",
+  },
+  {
+    title: "Data quality and reliability",
+    detail:
+      "Use validation checks and guardrails to prevent silent data issues from reaching models.",
+  },
+  {
+    title: "Performance-cost balance",
+    detail:
+      "Optimize for useful output per token or compute, not only for maximum accuracy.",
+  },
 ];
 
 function App() {
@@ -55,10 +80,9 @@ function App() {
           </h1>
 
           <p className="lead">
-            I build and ship ML systems end-to-end: data → training → evaluation →
-            deployment. At cPacket (AI/ML R&D), I developed an LLM prompt optimizer that
-            improved prompt quality up to <strong>78%</strong> and reduced token usage by{" "}
-            <strong>30%</strong> across Gemini, GPT, and Claude-class models.
+            I’m Karan Seroy, a Machine Learning Engineer focused on building practical AI
+            systems that are measurable, reliable, and production-ready. I enjoy translating
+            complex ML problems into clean workflows that teams can trust and scale.
           </p>
 
           <div className="hero-actions">
@@ -122,9 +146,16 @@ function App() {
 
             <div className="card soft">
               <h3>What I Optimize For</h3>
-              <ul className="list">
+              <p className="muted">
+                I focus on practical decisions that keep ML systems reliable, measurable, and
+                production-ready over time.
+              </p>
+              <ul className="list detailed-list">
                 {focusAreas.map((area) => (
-                  <li key={area}>{area}</li>
+                  <li key={area.title}>
+                    <span className="focus-title">{area.title}</span>
+                    <span className="focus-detail">{area.detail}</span>
+                  </li>
                 ))}
               </ul>
             </div>

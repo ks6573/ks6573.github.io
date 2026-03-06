@@ -283,6 +283,19 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 }
 .list{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
 .list li{ margin: 8px 0; }
+.detailed-list li{ margin: 12px 0; }
+.focus-title{
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.focus-detail{
+  display: block;
+  color: var(--muted);
+  font-size: .94rem;
+  line-height: 1.45;
+}
 
 .contact-card{ padding: 18px; }
 .contact-row{
