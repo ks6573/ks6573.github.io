@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 
 const projects = [
   {
-    title: "SyscontrolMCP",
+    title: "SysControl",
     pill: "MCP / Systems",
     description:
-      "Model Context Protocol (MCP) server providing real-time system metrics (CPU, RAM, GPU, disk, network, and processes) for context-aware performance insights.",
-    meta: ["Python", "MCP", "System Metrics"],
-    url: "https://github.com/ks6573/SyscontrolMCP",
+      "Cross-platform AI systems copilot combining a 36-tool MCP server with terminal and chat interfaces for diagnostics, safe process control, and performance optimization.",
+    meta: ["Python", "MCP", "Systems Copilot"],
+    url: "https://github.com/ks6573/SysControl",
   },
   {
     title: "PerformanceIntelligence",
     pill: "Performance / Tooling",
     description:
-      "Early-stage repository for performance intelligence workflows and profiling-driven optimization experiments.",
-    meta: ["Swift", "Profiling", "In Progress"],
+      "iOS app that monitors device health in real time, computes a live performance score, and recommends targeted actions to prevent slowdowns.",
+    meta: ["Swift", "iOS", "Performance Monitoring"],
     url: "https://github.com/ks6573/PerformanceIntelligence",
   },
   {

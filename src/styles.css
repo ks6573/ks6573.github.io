@@ -18,6 +18,7 @@
 }
 
 *{ box-sizing:border-box; }
+img, svg, video, canvas{ max-width:100%; height:auto; }
 html,body{ height:100%; }
 html{ overflow-y: scroll; }
 body{
@@ -329,4 +330,61 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+@media (max-width: 760px){
+  body{
+    background-attachment: scroll;
+  }
+
+  .header-inner{
+    align-items: flex-start;
+  }
+
+  .nav{
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .hero{
+    padding-top: 44px;
+  }
+
+  .card-top{
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .row{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .contact-row{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .contact-row .btn{
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px){
+  .container{
+    width: min(1100px, calc(100% - 24px));
+  }
+
+  .hero h1{
+    font-size: clamp(1.7rem, 8vw, 2.3rem);
+  }
+
+  .btn{
+    padding: 9px 12px;
+    font-size: .92rem;
+  }
 }
