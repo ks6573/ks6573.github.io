@@ -5,7 +5,7 @@ const projects = [
     title: "SysControl",
     pill: "MCP / Systems",
     description:
-      "Cross-platform AI systems copilot combining a 36-tool MCP server with terminal and chat interfaces for diagnostics, safe process control, and performance optimization.",
+      "Cross-platform AI systems copilot combining a 57-tool MCP server with terminal and chat interfaces (Claude Desktop, local/cloud Ollama, Telegram/WhatsApp/Messenger) for real-time diagnostics, safe process control, and actionable performance optimization.",
     meta: ["Python", "MCP", "Systems Copilot"],
     url: "https://github.com/ks6573/SysControl",
   },
