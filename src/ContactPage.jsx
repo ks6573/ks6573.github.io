@@ -1,30 +1,11 @@
-import { Link } from "react-router-dom";
+import SiteHeader from "./SiteHeader";
 
 function ContactPage() {
   const year = new Date().getFullYear();
 
   return (
     <>
-      <header className="site-header">
-        <div className="container header-inner">
-          <div className="brand">
-            <div className="avatar" />
-            <div>
-              <div className="name">Karan Seroy</div>
-              <div className="role">Machine Learning Engineer</div>
-            </div>
-          </div>
-
-          <nav className="nav">
-            <Link to="/">Home</Link>
-            <Link to="/projects.html">Projects</Link>
-            <Link to="/about.html">About</Link>
-            <span className="nav-current" aria-current="page">
-              Contact
-            </span>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="container">
         <section className="hero">

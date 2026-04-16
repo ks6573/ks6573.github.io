@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import SiteHeader from "./SiteHeader";
 
 const principles = [
   "Start with measurable objectives and baselines before model complexity.",
@@ -58,28 +58,7 @@ function AboutPage() {
 
   return (
     <>
-      <header className="site-header">
-        <div className="container header-inner">
-          <div className="brand">
-            <div className="avatar" />
-            <div>
-              <div className="name">Karan Seroy</div>
-              <div className="role">Machine Learning Engineer</div>
-            </div>
-          </div>
-
-          <nav className="nav">
-            <Link to="/">Home</Link>
-            <Link to="/projects.html">Projects</Link>
-            <span className="nav-current" aria-current="page">
-              About
-            </span>
-            <Link to="/contact.html" className="btn">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="container">
         <section className="hero">

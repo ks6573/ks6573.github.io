@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SiteHeader from "./SiteHeader";
 
 const projects = [
   {
@@ -140,28 +141,7 @@ function ProjectsPage() {
 
   return (
     <>
-      <header className="site-header">
-        <div className="container header-inner">
-          <div className="brand">
-            <div className="avatar" />
-            <div>
-              <div className="name">Karan Seroy</div>
-              <div className="role">Machine Learning Engineer</div>
-            </div>
-          </div>
-
-          <nav className="nav">
-            <Link to="/">Home</Link>
-            <span className="nav-current" aria-current="page">
-              Projects
-            </span>
-            <Link to="/about.html">About</Link>
-            <Link to="/contact.html" className="btn">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="container">
         <section className="hero">
