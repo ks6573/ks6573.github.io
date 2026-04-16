@@ -1,3 +1,5 @@
+import { useEffect, useMemo, useState } from "react";
+
 const skills = [
   "Python",
   "PyTorch",
@@ -10,6 +12,7 @@ const skills = [
 ];
 
 const GITHUB_USERNAME = "ks6573";
+const CLAUDE_USAGE_JSON = "./data/claude-usage.json";
 
 const focusAreas = [
   {
@@ -47,6 +50,44 @@ const focusAreas = [
 function App() {
   const year = new Date().getFullYear();
   const contributionsChartUrl = `https://ghchart.rshah.org/1ee6c8/${GITHUB_USERNAME}`;
+  const [claudeUsage, setClaudeUsage] = useState(null);
+  const [claudeUsageError, setClaudeUsageError] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadClaudeUsage() {
+      try {
+        const response = await fetch(CLAUDE_USAGE_JSON, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("Failed to load Claude usage JSON");
+        }
+        const data = await response.json();
+        if (!mounted) return;
+        setClaudeUsage(data);
+        setClaudeUsageError(false);
+      } catch (_error) {
+        if (!mounted) return;
+        setClaudeUsageError(true);
+      }
+    }
+
+    loadClaudeUsage();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const heatmapWeeks = useMemo(() => {
+    const days = claudeUsage?.heatmap?.days;
+    if (!Array.isArray(days) || days.length === 0) return [];
+
+    const weeks = [];
+    for (let i = 0; i < days.length; i += 7) {
+      weeks.push(days.slice(i, i + 7));
+    }
+    return weeks;
+  }, [claudeUsage]);
 
   return (
     <>
@@ -156,6 +197,95 @@ function App() {
 
         <section className="section">
           <div className="section-head">
+            <h2>Claude Code Usage</h2>
+          </div>
+
+          <article className="card claude-card">
+            {claudeUsage && (
+              <>
+                <div className="stats-grid">
+                  <div className="stat-box">
+                    <div className="stat-label">Sessions</div>
+                    <div className="stat-value">{formatNumber(claudeUsage.summary.sessions)}</div>
+                  </div>
+                  <div className="stat-box">
+                    <div className="stat-label">Messages</div>
+                    <div className="stat-value">{formatNumber(claudeUsage.summary.messages)}</div>
+                  </div>
+                  <div className="stat-box">
+                    <div className="stat-label">Total tokens</div>
+                    <div className="stat-value">
+                      {formatCompactNumber(claudeUsage.summary.totalTokens)}
+                    </div>
+                  </div>
+                  <div className="stat-box">
+                    <div className="stat-label">Active days</div>
+                    <div className="stat-value">{formatNumber(claudeUsage.summary.activeDays)}</div>
+                  </div>
+                  <div className="stat-box">
+                    <div className="stat-label">Current streak</div>
+                    <div className="stat-value">{claudeUsage.summary.currentStreakDays}d</div>
+                  </div>
+                  <div className="stat-box">
+                    <div className="stat-label">Longest streak</div>
+                    <div className="stat-value">{claudeUsage.summary.longestStreakDays}d</div>
+                  </div>
+                  <div className="stat-box">
+                    <div className="stat-label">Peak hour</div>
+                    <div className="stat-value">{claudeUsage.summary.peakHourLabel}</div>
+                  </div>
+                  <div className="stat-box">
+                    <div className="stat-label">Favorite model</div>
+                    <div className="stat-value model-name">{claudeUsage.summary.favoriteModel}</div>
+                  </div>
+                </div>
+
+                <div className="claude-heatmap-wrap">
+                  <div className="claude-heatmap">
+                    {heatmapWeeks.map((week, weekIndex) => (
+                      <div key={`week-${weekIndex}`} className="week-column">
+                        {week.map((day) => (
+                          <div
+                            key={day.date}
+                            className={`heat-cell level-${day.level}`}
+                            title={`${day.date}: ${day.count} messages`}
+                          />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="heatmap-legend">
+                    <span>Less</span>
+                    {[0, 1, 2, 3, 4].map((level) => (
+                      <span key={`legend-${level}`} className={`heat-cell level-${level}`} />
+                    ))}
+                    <span>More</span>
+                  </div>
+                </div>
+
+                <p className="muted small">
+                  Synced from local Claude stats on{" "}
+                  {formatDate(claudeUsage.generatedAt)}. Run{" "}
+                  <code>npm run sync:claude-usage</code> in this repo to refresh before deploy.
+                </p>
+              </>
+            )}
+
+            {!claudeUsage && !claudeUsageError && (
+              <p className="muted">Loading Claude usage data...</p>
+            )}
+
+            {claudeUsageError && (
+              <p className="muted">
+                Claude usage data not found yet. Run <code>npm run sync:claude-usage</code> and
+                redeploy.
+              </p>
+            )}
+          </article>
+        </section>
+
+        <section className="section">
+          <div className="section-head">
             <h2>About</h2>
           </div>
 
@@ -206,6 +336,30 @@ function App() {
       </main>
     </>
   );
+}
+
+function formatNumber(value) {
+  return Number(value || 0).toLocaleString();
+}
+
+function formatCompactNumber(value) {
+  const num = Number(value || 0);
+  if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(1)}M`;
+  if (num >= 1_000) return `${(num / 1_000).toFixed(1)}K`;
+  return `${num}`;
+}
+
+function formatDate(value) {
+  if (!value) return "unknown date";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "unknown date";
+  return date.toLocaleString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "numeric",
+    minute: "2-digit",
+  });
 }
 
 export default App;

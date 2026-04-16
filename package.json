@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sync:claude-usage": "node scripts/export-claude-usage.mjs",
+    "build:with-claude-usage": "npm run sync:claude-usage && vite build",
     "build": "vite build",
     "preview": "vite preview"
   },

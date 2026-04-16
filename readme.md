@@ -25,3 +25,21 @@ For GitHub Pages:
 1. Push to `main`.
 2. In GitHub: `Settings` -> `Pages` -> `Build and deployment`.
 3. Set `Source` to `GitHub Actions`.
+
+## Claude Usage Sync
+
+This site can display a live-style Claude Code usage dashboard from local machine stats.
+
+```bash
+npm run sync:claude-usage
+```
+
+This reads `~/.claude/stats-cache.json` and writes:
+
+- `public/data/claude-usage.json`
+
+For one-step refresh + build:
+
+```bash
+npm run build:with-claude-usage
+```

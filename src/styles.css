@@ -261,6 +261,85 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   display: block;
   border-radius: 8px;
 }
+
+.claude-card{
+  display: grid;
+  gap: 14px;
+}
+
+.stats-grid{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat-box{
+  border: 1px solid var(--border);
+  background: rgba(10, 18, 32, 0.72);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.stat-label{
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.stat-value{
+  color: var(--text);
+  font-size: 1.65rem;
+  font-weight: 680;
+  line-height: 1.1;
+  margin-top: 4px;
+}
+
+.stat-value.model-name{
+  font-size: 1.15rem;
+}
+
+.claude-heatmap-wrap{
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(8,13,24,.65);
+  padding: 12px;
+}
+
+.claude-heatmap{
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.week-column{
+  display: grid;
+  gap: 4px;
+}
+
+.heat-cell{
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: rgba(130,177,255,.12);
+  flex-shrink: 0;
+}
+
+.heat-cell.level-0{ background: rgba(130,177,255,.12); }
+.heat-cell.level-1{ background: #1d4ed8; }
+.heat-cell.level-2{ background: #2563eb; }
+.heat-cell.level-3{ background: #3b82f6; }
+.heat-cell.level-4{ background: #60a5fa; }
+
+.heatmap-legend{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .88rem;
+  margin-top: 10px;
+}
+
 .meta{
   color: rgba(174,193,223,.92);
   font-size: .92rem;
@@ -397,6 +476,14 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   .contact-row .btn{
     width: 100%;
     justify-content: center;
+  }
+
+  .stats-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-value{
+    font-size: 1.35rem;
   }
 }
 
