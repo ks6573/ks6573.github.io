@@ -235,6 +235,32 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 }
 
 .card p{ color: var(--muted); margin: 10px 0 10px; }
+.contribution-card{
+  overflow: hidden;
+}
+.contribution-copy{
+  margin-top: 0;
+}
+.contribution-chart-wrap{
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(8,13,24,.65);
+  padding: 12px;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+.contribution-chart-wrap:hover{
+  border-color: rgba(30,230,200,.42);
+  box-shadow: 0 0 16px rgba(30,230,200,.12);
+  text-decoration: none;
+}
+.contribution-chart{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
 .meta{
   color: rgba(174,193,223,.92);
   font-size: .92rem;

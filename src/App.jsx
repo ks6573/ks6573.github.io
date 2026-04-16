@@ -9,6 +9,8 @@ const skills = [
   "Kubernetes",
 ];
 
+const GITHUB_USERNAME = "ks6573";
+
 const focusAreas = [
   {
     title: "Evaluation-first ML systems",
@@ -44,6 +46,7 @@ const focusAreas = [
 
 function App() {
   const year = new Date().getFullYear();
+  const contributionsChartUrl = `https://ghchart.rshah.org/1ee6c8/${GITHUB_USERNAME}`;
 
   return (
     <>
@@ -114,6 +117,41 @@ function App() {
               </span>
             ))}
           </div>
+        </section>
+
+        <section className="section">
+          <div className="section-head">
+            <h2>Live GitHub Contributions</h2>
+          </div>
+
+          <article className="card contribution-card">
+            <p className="muted contribution-copy">
+              This chart is fetched live from your public GitHub activity and updates automatically.
+            </p>
+            <a
+              href={`https://github.com/${GITHUB_USERNAME}`}
+              target="_blank"
+              rel="noreferrer"
+              className="contribution-chart-wrap"
+              aria-label={`${GITHUB_USERNAME} GitHub contribution graph`}
+            >
+              <img
+                src={contributionsChartUrl}
+                alt={`${GITHUB_USERNAME} GitHub contribution chart`}
+                className="contribution-chart"
+                loading="lazy"
+              />
+            </a>
+            <div className="links">
+              <a
+                href={`https://github.com/${GITHUB_USERNAME}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View full GitHub profile
+              </a>
+            </div>
+          </article>
         </section>
 
         <section className="section">
