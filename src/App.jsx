@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 const skills = [
   "Python",
@@ -105,11 +106,11 @@ function App() {
             <span className="nav-current" aria-current="page">
               Home
             </span>
-            <a href="./projects.html">Projects</a>
-            <a href="./about.html">About</a>
-            <a href="./contact.html" className="btn">
+            <Link to="/projects.html">Projects</Link>
+            <Link to="/about.html">About</Link>
+            <Link to="/contact.html" className="btn">
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
       </header>
@@ -130,9 +131,9 @@ function App() {
           </p>
 
           <div className="hero-actions">
-            <a className="btn" href="./projects.html">
+            <Link className="btn" to="/projects.html">
               View Projects Page
-            </a>
+            </Link>
             <a
               className="btn secondary"
               href="https://github.com/ks6573"
@@ -298,9 +299,9 @@ function App() {
               </p>
 
               <div className="hero-actions">
-                <a className="btn" href="./about.html">
+                <Link className="btn" to="/about.html">
                   Read Full About Page
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -339,19 +340,6 @@ function formatCompactNumber(value) {
   if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(1)}M`;
   if (num >= 1_000) return `${(num / 1_000).toFixed(1)}K`;
   return `${num}`;
-}
-
-function formatDate(value) {
-  if (!value) return "unknown date";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "unknown date";
-  return date.toLocaleString(undefined, {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-    hour: "numeric",
-    minute: "2-digit",
-  });
 }
 
 export default App;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const projects = [
   {
@@ -150,14 +151,14 @@ function ProjectsPage() {
           </div>
 
           <nav className="nav">
-            <a href="./index.html">Home</a>
+            <Link to="/">Home</Link>
             <span className="nav-current" aria-current="page">
               Projects
             </span>
-            <a href="./about.html">About</a>
-            <a href="./contact.html" className="btn">
+            <Link to="/about.html">About</Link>
+            <Link to="/contact.html" className="btn">
               Contact
-            </a>
+            </Link>
           </nav>
         </div>
       </header>
@@ -173,9 +174,9 @@ function ProjectsPage() {
             GitHub and any public organizations I’m active in.
           </p>
           <div className="hero-actions">
-            <a className="btn secondary" href="./about.html">
+            <Link className="btn secondary" to="/about.html">
               About Me
-            </a>
+            </Link>
           </div>
         </section>
 

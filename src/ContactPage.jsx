@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function ContactPage() {
   const year = new Date().getFullYear();
 
@@ -14,9 +16,9 @@ function ContactPage() {
           </div>
 
           <nav className="nav">
-            <a href="./index.html">Home</a>
-            <a href="./projects.html">Projects</a>
-            <a href="./about.html">About</a>
+            <Link to="/">Home</Link>
+            <Link to="/projects.html">Projects</Link>
+            <Link to="/about.html">About</Link>
             <span className="nav-current" aria-current="page">
               Contact
             </span>
