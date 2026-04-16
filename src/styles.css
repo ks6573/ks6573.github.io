@@ -15,6 +15,10 @@
   --accent-2: #5c7cff;
   --shadow: 0 14px 36px rgba(0,0,0,.35);
   --radius: 16px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 180ms;
+  --motion-med: 300ms;
+  --motion-slow: 460ms;
 }
 
 *{ box-sizing:border-box; }
@@ -32,6 +36,20 @@ body{
   color: var(--text);
   line-height:1.55;
   position: relative;
+}
+body[data-page-transitions-ready="true"]{
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--motion-med) var(--ease-out), transform var(--motion-slow) var(--ease-out);
+}
+body[data-page-transitions-ready="true"].is-ready{
+  opacity: 1;
+  transform: translateY(0);
+}
+body.is-leaving{
+  opacity: 0 !important;
+  transform: translateY(8px) !important;
+  pointer-events: none;
 }
 body::before{
   content: "";
@@ -96,6 +114,29 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
 .nav-current{
   color: var(--accent);
   font-weight: 650;
+}
+
+main section{
+  opacity: 0;
+  transform: translateY(18px);
+  animation: section-enter var(--motion-slow) var(--ease-out) forwards;
+}
+main section:nth-of-type(1){ animation-delay: 70ms; }
+main section:nth-of-type(2){ animation-delay: 130ms; }
+main section:nth-of-type(3){ animation-delay: 180ms; }
+main section:nth-of-type(4){ animation-delay: 230ms; }
+main section:nth-of-type(5){ animation-delay: 280ms; }
+main section:nth-of-type(6){ animation-delay: 330ms; }
+
+@keyframes section-enter{
+  from{
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .btn{
@@ -207,6 +248,10 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   border-radius: var(--radius);
   padding: 16px;
   box-shadow: var(--shadow);
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out);
 }
 .card.soft{
   background: var(--panel2);
@@ -278,6 +323,10 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   background: rgba(10, 18, 32, 0.72);
   border-radius: 12px;
   padding: 10px 12px;
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) var(--ease-out);
 }
 
 .stat-label{
@@ -373,6 +422,10 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   border-radius: 14px;
   border: 1px solid var(--border);
   background: rgba(17,30,53,.78);
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out);
 }
 .row:hover{ background: rgba(23,38,66,.9); text-decoration:none; }
 .row-title{ font-weight: 650; }
@@ -435,6 +488,71 @@ a:hover{ text-decoration: underline; text-underline-offset: 4px; }
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+@media (hover: hover) and (pointer: fine){
+  .nav a{
+    transition: color var(--motion-fast) ease, text-shadow var(--motion-fast) ease;
+  }
+
+  .nav a:hover{
+    text-shadow: 0 0 12px rgba(92,124,255,.28);
+  }
+
+  .chip{
+    transition:
+      transform var(--motion-fast) var(--ease-out),
+      border-color var(--motion-fast) var(--ease-out),
+      color var(--motion-fast) var(--ease-out);
+  }
+
+  .chip:hover{
+    transform: translateY(-1px);
+    border-color: rgba(92,124,255,.48);
+    color: #c4d2e7;
+  }
+
+  .card:hover{
+    transform: translateY(-2px);
+    border-color: rgba(30,230,200,.34);
+  }
+
+  .stat-box:hover{
+    transform: translateY(-1px);
+    border-color: rgba(92,124,255,.38);
+    background: rgba(12, 21, 37, 0.82);
+  }
+
+  .row:hover{
+    transform: translateY(-1px);
+    border-color: rgba(92,124,255,.32);
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  body[data-page-transitions-ready="true"]{
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  body.is-leaving{
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  main section{
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 
 @media (max-width: 760px){

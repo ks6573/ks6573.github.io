@@ -166,9 +166,6 @@ function App() {
           </div>
 
           <article className="card contribution-card">
-            <p className="muted contribution-copy">
-              This chart is fetched live from your public GitHub activity and updates automatically.
-            </p>
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
@@ -263,11 +260,6 @@ function App() {
                   </div>
                 </div>
 
-                <p className="muted small">
-                  Synced from local Claude stats on{" "}
-                  {formatDate(claudeUsage.generatedAt)}. Run{" "}
-                  <code>npm run sync:claude-usage</code> in this repo to refresh before deploy.
-                </p>
               </>
             )}
 
