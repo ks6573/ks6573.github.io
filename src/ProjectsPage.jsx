@@ -41,26 +41,27 @@ function ProjectsPage() {
   const year = new Date().getFullYear();
   const [githubRepos, setGithubRepos] = useState([]);
   const [repoLoadError, setRepoLoadError] = useState(false);
+  const [githubOrgs, setGithubOrgs] = useState([]);
+  const [orgLoadError, setOrgLoadError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
 
-    async function loadRepos() {
+    async function loadGitHubData() {
       try {
-        const response = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=8`,
+        const repoResponse = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=12`,
         );
-
-        if (!response.ok) {
+        if (!repoResponse.ok) {
           throw new Error("Failed to load repositories");
         }
 
-        const data = await response.json();
-        if (!Array.isArray(data)) {
+        const repoData = await repoResponse.json();
+        if (!Array.isArray(repoData)) {
           throw new Error("Unexpected GitHub API response");
         }
 
-        const newestRepos = data
+        const newestRepos = repoData
           .filter((repo) => !repo.fork && repo.name !== "ks6573.github.io")
           .slice(0, 6);
 
@@ -73,9 +74,32 @@ function ProjectsPage() {
           setRepoLoadError(true);
         }
       }
+
+      try {
+        const orgResponse = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/orgs?per_page=12`,
+        );
+        if (!orgResponse.ok) {
+          throw new Error("Failed to load organizations");
+        }
+
+        const orgData = await orgResponse.json();
+        if (!Array.isArray(orgData)) {
+          throw new Error("Unexpected GitHub org response");
+        }
+
+        if (isMounted) {
+          setGithubOrgs(orgData);
+          setOrgLoadError(false);
+        }
+      } catch (_error) {
+        if (isMounted) {
+          setOrgLoadError(true);
+        }
+      }
     }
 
-    loadRepos();
+    loadGitHubData();
 
     return () => {
       isMounted = false;
@@ -146,7 +170,7 @@ function ProjectsPage() {
           </h1>
           <p className="lead">
             Check out a few ML projects I’ve worked on, plus the latest stuff I’m shipping on
-            GitHub.
+            GitHub and any public organizations I’m active in.
           </p>
           <div className="hero-actions">
             <a className="btn secondary" href="./about.html">
@@ -195,6 +219,49 @@ function ProjectsPage() {
             <p className="muted small">
               Live GitHub updates are unavailable right now. Featured projects above are still
               up to date.
+            </p>
+          )}
+        </section>
+
+        <section className="section">
+          <div className="section-head">
+            <h2>Organizations & Community</h2>
+          </div>
+
+          <div className="grid">
+            {githubOrgs.map((org) => (
+              <article key={`org-${org.id}`} className="card">
+                <div className="card-top">
+                  <h3>{org.login}</h3>
+                  <span className="pill">GitHub Org</span>
+                </div>
+                <p>
+                  Public organization profile for <strong>{org.login}</strong>.
+                </p>
+                <div className="links">
+                  <a href={org.html_url} target="_blank" rel="noreferrer">
+                    View organization
+                  </a>
+                </div>
+              </article>
+            ))}
+
+            {!orgLoadError && githubOrgs.length === 0 && (
+              <article className="card">
+                <div className="card-top">
+                  <h3>No public org memberships yet</h3>
+                  <span className="pill">GitHub</span>
+                </div>
+                <p>
+                  This GitHub account does not currently expose public organization memberships.
+                </p>
+              </article>
+            )}
+          </div>
+
+          {orgLoadError && (
+            <p className="muted small">
+              Live GitHub organization data is unavailable right now. Try refreshing in a moment.
             </p>
           )}
         </section>
