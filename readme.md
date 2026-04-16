@@ -43,3 +43,17 @@ For one-step refresh + build:
 ```bash
 npm run build:with-claude-usage
 ```
+
+### Optional: Daily Auto-Sync on macOS (launchd)
+
+Run this script to sync and push `public/data/claude-usage.json`:
+
+```bash
+./scripts/sync-claude-usage-and-deploy.sh
+```
+
+You can schedule it daily with a LaunchAgent:
+
+- Label: `com.ks6573.claude-usage-sync`
+- Script: `scripts/sync-claude-usage-and-deploy.sh`
+- Logs: `logs/claude-usage-sync.log`
