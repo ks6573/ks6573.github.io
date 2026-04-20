@@ -43,8 +43,6 @@ function ProjectsPage() {
   const year = new Date().getFullYear();
   const [githubRepos, setGithubRepos] = useState([]);
   const [repoLoadError, setRepoLoadError] = useState(false);
-  const [githubOrgs, setGithubOrgs] = useState([]);
-  const [orgLoadError, setOrgLoadError] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -77,28 +75,6 @@ function ProjectsPage() {
         }
       }
 
-      try {
-        const orgResponse = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/orgs?per_page=12`,
-        );
-        if (!orgResponse.ok) {
-          throw new Error("Failed to load organizations");
-        }
-
-        const orgData = await orgResponse.json();
-        if (!Array.isArray(orgData)) {
-          throw new Error("Unexpected GitHub org response");
-        }
-
-        if (isMounted) {
-          setGithubOrgs(orgData);
-          setOrgLoadError(false);
-        }
-      } catch (_error) {
-        if (isMounted) {
-          setOrgLoadError(true);
-        }
-      }
     }
 
     loadGitHubData();
@@ -151,7 +127,7 @@ function ProjectsPage() {
           </h1>
           <p className="lead">
             Check out a few ML projects I’ve worked on, plus the latest stuff I’m shipping on
-            GitHub and any public organizations I’m active in.
+            GitHub.
           </p>
           <div className="hero-actions">
             <Link className="btn secondary" to="/about.html">
@@ -200,49 +176,6 @@ function ProjectsPage() {
             <p className="muted small">
               Live GitHub updates are unavailable right now. Featured projects above are still
               up to date.
-            </p>
-          )}
-        </section>
-
-        <section className="section">
-          <div className="section-head">
-            <h2>Organizations & Community</h2>
-          </div>
-
-          <div className="grid">
-            {githubOrgs.map((org) => (
-              <article key={`org-${org.id}`} className="card">
-                <div className="card-top">
-                  <h3>{org.login}</h3>
-                  <span className="pill">GitHub Org</span>
-                </div>
-                <p>
-                  Public organization profile for <strong>{org.login}</strong>.
-                </p>
-                <div className="links">
-                  <a href={org.html_url} target="_blank" rel="noreferrer">
-                    View organization
-                  </a>
-                </div>
-              </article>
-            ))}
-
-            {!orgLoadError && githubOrgs.length === 0 && (
-              <article className="card">
-                <div className="card-top">
-                  <h3>No public org memberships yet</h3>
-                  <span className="pill">GitHub</span>
-                </div>
-                <p>
-                  This GitHub account does not currently expose public organization memberships.
-                </p>
-              </article>
-            )}
-          </div>
-
-          {orgLoadError && (
-            <p className="muted small">
-              Live GitHub organization data is unavailable right now. Try refreshing in a moment.
             </p>
           )}
         </section>
