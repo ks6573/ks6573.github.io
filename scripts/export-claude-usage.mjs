@@ -5,6 +5,7 @@ import { join } from "node:path";
 const INPUT_PATH =
   process.env.CLAUDE_STATS_PATH || join(homedir(), ".claude", "stats-cache.json");
 const OUTPUT_PATH = join(process.cwd(), "public", "data", "claude-usage.json");
+const HEATMAP_START_DATE = process.env.CLAUDE_HEATMAP_START || "2026-01-01";
 
 function parseDay(day) {
   return new Date(`${day}T00:00:00Z`);
@@ -70,14 +71,14 @@ function buildHeatmap(dailyActivity, endDateString) {
     dailyMap.set(item.date, numberOrZero(item.messageCount));
   }
 
-  const end = endDateString ? parseDay(endDateString) : new Date();
-  const start = new Date(end.getTime() - 364 * 86400000);
+  const start = parseDay(HEATMAP_START_DATE);
+  const rawEnd = endDateString ? parseDay(endDateString) : new Date();
+  const end = rawEnd < start ? start : rawEnd;
 
   const points = [];
   let maxCount = 0;
 
-  for (let i = 0; i < 365; i += 1) {
-    const day = new Date(start.getTime() + i * 86400000);
+  for (let day = new Date(start); day <= end; day = new Date(day.getTime() + 86400000)) {
     const date = toDayString(day);
     const count = numberOrZero(dailyMap.get(date));
     if (count > maxCount) maxCount = count;
