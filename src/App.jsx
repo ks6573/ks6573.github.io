@@ -15,7 +15,6 @@ const skills = [
 
 const GITHUB_USERNAME = "ks6573";
 const CLAUDE_USAGE_JSON = "./data/claude-usage.json";
-const CHART_START_DATE = "2026-01-01";
 
 const focusAreas = [
   {
@@ -52,8 +51,7 @@ const focusAreas = [
 
 function App() {
   const year = new Date().getFullYear();
-  const contributionsChartEndDate = new Date().toISOString().slice(0, 10);
-  const contributionsChartUrl = `https://github.com/users/${GITHUB_USERNAME}/contributions?from=${CHART_START_DATE}&to=${contributionsChartEndDate}`;
+  const contributionsChartUrl = `https://ghchart.rshah.org/1ee6c8/${GITHUB_USERNAME}`;
   const [claudeUsage, setClaudeUsage] = useState(null);
   const [claudeUsageError, setClaudeUsageError] = useState(false);
 
