@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-04-20T23:53:43.346Z",
+  "generatedAt": "2026-04-20T20:11:25-04:00",
   "sourcePath": "~/.claude/stats-cache.json",
-  "sourceLastComputedDate": "2026-04-15",
+  "sourceLastComputedDate": "2026-04-20",
   "summary": {
-    "sessions": 75,
-    "messages": 37810,
-    "totalTokens": 11771930,
-    "activeDays": 24,
-    "currentStreakDays": 10,
-    "longestStreakDays": 10,
+    "sessions": 95,
+    "messages": 43265,
+    "totalTokens": 14900000,
+    "activeDays": 29,
+    "currentStreakDays": 15,
+    "longestStreakDays": 15,
     "peakHourLabel": "3 PM",
-    "favoriteModel": "claude-opus-4-6"
+    "favoriteModel": "Opus 4.6"
   },
   "heatmap": {
     "days": [

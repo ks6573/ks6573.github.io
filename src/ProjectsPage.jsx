@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SiteHeader from "./SiteHeader";
+import GitHubContributionChart from "./GitHubContributionChart";
+import ClaudeUsagePanel from "./ClaudeUsagePanel";
 
 const projects = [
   {
@@ -178,6 +180,20 @@ function ProjectsPage() {
               up to date.
             </p>
           )}
+        </section>
+
+        <section className="section">
+          <div className="section-head">
+            <h2>Live GitHub Contributions</h2>
+          </div>
+          <GitHubContributionChart username={GITHUB_USERNAME} />
+        </section>
+
+        <section className="section">
+          <div className="section-head">
+            <h2>Claude Code Usage</h2>
+          </div>
+          <ClaudeUsagePanel />
         </section>
 
         <footer className="footer">

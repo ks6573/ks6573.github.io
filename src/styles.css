@@ -557,6 +557,173 @@ main section:nth-of-type(6){ animation-delay: 330ms; }
 }
 .contact-links a{ color: var(--accent); font-weight: 650; }
 
+.github-heatmap-card{
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(16,28,48,.88), rgba(11,20,37,.9));
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.github-heatmap-status{
+  margin: 0 0 12px;
+  color: var(--muted);
+  min-height: 24px;
+}
+.github-heatmap-shell{
+  border: 1px solid rgba(130,177,255,.3);
+  border-radius: 14px;
+  background: rgba(6,12,23,.85);
+  padding: 12px;
+  overflow-x: auto;
+}
+.github-heatmap-months{
+  display:grid;
+  grid-template-columns: 34px 1fr;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.months-spacer{ min-height: 1px; }
+.month-columns{
+  display:grid;
+  grid-template-columns: repeat(var(--weeks), minmax(0, 1fr));
+  column-gap: 4px;
+  min-width: max-content;
+}
+.month-columns span{
+  min-height: 18px;
+  font-size: .85rem;
+  color: rgba(174,193,223,.72);
+}
+
+.github-heatmap-grid{
+  display:grid;
+  grid-template-columns: 34px 1fr;
+  gap: 6px;
+}
+.day-labels{
+  display:grid;
+  grid-template-rows: repeat(7, 14px);
+  row-gap: 4px;
+}
+.day-labels span{
+  font-size: .8rem;
+  color: rgba(174,193,223,.7);
+  line-height: 14px;
+}
+
+.week-columns{
+  display:flex;
+  gap: 4px;
+  min-width: max-content;
+}
+.github-week-column{
+  display:grid;
+  grid-template-rows: repeat(7, 14px);
+  row-gap: 4px;
+}
+
+.heatmap-cell{
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 3px;
+  padding: 0;
+  background: rgba(20,33,58,.95);
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+}
+.heatmap-cell.level-0{ background: rgba(20,33,58,.95); }
+.heatmap-cell.level-1{ background: rgba(44,198,188,.45); }
+.heatmap-cell.level-2{ background: rgba(44,198,188,.62); }
+.heatmap-cell.level-3{ background: rgba(44,198,188,.8); }
+.heatmap-cell.level-4{ background: rgba(115,255,246,.95); }
+.heatmap-cell:hover,
+.heatmap-cell:focus-visible{
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(232,241,255,.45);
+  filter: brightness(1.08);
+}
+.heatmap-cell:focus-visible{ outline: none; }
+.heatmap-cell.outside-range{
+  opacity: .33;
+  cursor: default;
+}
+
+.github-heatmap-footer{
+  margin-top: 12px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.github-heatmap-footer a{
+  color: var(--accent);
+  font-weight: 650;
+}
+
+.claude-usage-card{
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(16,28,48,.88), rgba(11,20,37,.9));
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.claude-metric-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.claude-metric-tile{
+  border: 1px solid rgba(130,177,255,.2);
+  border-radius: 10px;
+  background: rgba(13,22,39,.78);
+  padding: 10px;
+  min-height: 74px;
+}
+.claude-metric-label{
+  color: rgba(174,193,223,.82);
+  font-size: .92rem;
+  line-height: 1.1;
+}
+.claude-metric-value{
+  margin-top: 6px;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.claude-activity-shell{
+  margin-top: 12px;
+  border: 1px solid rgba(130,177,255,.3);
+  border-radius: 14px;
+  background: rgba(6,12,23,.85);
+  padding: 12px;
+  overflow-x: auto;
+}
+.claude-activity-grid{
+  display: flex;
+  gap: 4px;
+  min-width: max-content;
+}
+.claude-week-column{
+  display: grid;
+  grid-template-rows: repeat(7, 16px);
+  row-gap: 4px;
+}
+.claude-cell{
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background: rgba(221,223,228,.9);
+}
+.claude-cell.level-0{ background: rgba(221,223,228,.9); }
+.claude-cell.level-1{ background: rgba(142,183,255,.75); }
+.claude-cell.level-2{ background: rgba(92,147,247,.9); }
+.claude-cell.level-3{ background: rgba(66,123,230,1); }
+.claude-cell.level-4{ background: rgba(49,102,212,1); }
+
 .footer{
   padding: 34px 0 60px;
   margin-top: 10px;
@@ -663,6 +830,46 @@ main section:nth-of-type(6){ animation-delay: 330ms; }
 
   .stat-value{
     font-size: 1.35rem;
+  }
+
+  .github-heatmap-months,
+  .github-heatmap-grid{
+    grid-template-columns: 28px 1fr;
+  }
+
+  .day-labels{
+    grid-template-rows: repeat(7, 12px);
+  }
+
+  .day-labels span{
+    font-size: .72rem;
+    line-height: 12px;
+  }
+
+  .github-week-column{
+    grid-template-rows: repeat(7, 12px);
+  }
+
+  .heatmap-cell{
+    width: 12px;
+    height: 12px;
+  }
+
+  .claude-metric-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .claude-metric-value{
+    font-size: 1.65rem;
+  }
+
+  .claude-week-column{
+    grid-template-rows: repeat(7, 14px);
+  }
+
+  .claude-cell{
+    width: 14px;
+    height: 14px;
   }
 }
 

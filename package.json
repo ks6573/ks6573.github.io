@@ -7,6 +7,7 @@
     "dev": "vite",
     "sync:claude-usage": "node scripts/export-claude-usage.mjs",
     "build:with-claude-usage": "npm run sync:claude-usage && vite build",
+    "sync:github-contributions": "node scripts/sync-github-contributions.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },
