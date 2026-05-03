@@ -1,4 +1,26 @@
 import SiteHeader from "./SiteHeader";
+import TypedText from "./TypedText";
+
+const contacts = [
+  {
+    label: "Email",
+    value: "ks6573@rit.edu",
+    action: "Send Email",
+    href: "mailto:ks6573@rit.edu",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/ks6573",
+    action: "Open GitHub",
+    href: "https://github.com/ks6573",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/karan-seroy",
+    action: "Open LinkedIn",
+    href: "https://linkedin.com/in/karan-seroy/",
+  },
+];
 
 function ContactPage() {
   const year = new Date().getFullYear();
@@ -7,59 +29,48 @@ function ContactPage() {
     <>
       <SiteHeader />
 
-      <main className="container">
-        <section className="hero">
-          <h1>
-            Contact
-            <span className="muted"> and collaboration details.</span>
-          </h1>
-          <p className="lead">
-            Open to ML engineering, applied AI, and data-driven product work. The fastest way
-            to reach me is email.
-          </p>
+      <main className="container dashboard-page">
+        <section className="hero compact-hero">
+          <TypedText as="h1" text="Contact" speed={34} />
+          <TypedText
+            as="p"
+            className="lead"
+            text="Open to ML engineering, applied AI, and data-driven product work."
+            speed={12}
+            startDelay={330}
+          />
         </section>
 
         <section className="section">
-          <div className="card contact-card">
-            <div className="contact-row">
-              <div>
-                <div className="label">Email</div>
-                <div className="value">karan1011seroy@gmail.com</div>
-              </div>
-              <a className="btn" href="mailto:karan1011seroy@gmail.com">
-                Send Email
-              </a>
+          <article className="signal-panel contact-panel">
+            <div className="panel-head">
+              <h2>Channels</h2>
+              <span className="panel-meta">available</span>
             </div>
-
-            <div className="contact-row">
-              <div>
-                <div className="label">GitHub</div>
-                <div className="value">github.com/ks6573</div>
-              </div>
-              <a className="btn secondary" href="https://github.com/ks6573" target="_blank" rel="noreferrer">
-                Open GitHub
-              </a>
+            <div className="contact-list">
+              {contacts.map((contact) => (
+                <div className="contact-row" key={contact.label}>
+                  <div>
+                    <div className="label">{contact.label}</div>
+                    <div className="value">{contact.value}</div>
+                  </div>
+                  <a
+                    className="text-link"
+                    href={contact.href}
+                    target={contact.href.startsWith("http") ? "_blank" : undefined}
+                    rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
+                  >
+                    {contact.action}
+                  </a>
+                </div>
+              ))}
             </div>
-
-            <div className="contact-row contact-row-last">
-              <div>
-                <div className="label">LinkedIn</div>
-                <div className="value">linkedin.com/in/karan-seroy</div>
-              </div>
-              <a
-                className="btn secondary"
-                href="https://linkedin.com/in/karan-seroy/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open LinkedIn
-              </a>
-            </div>
-          </div>
+          </article>
         </section>
 
         <footer className="footer">
           <div className="muted">© {year} Karan Seroy</div>
+          <div className="terminal-prompt">contact --open</div>
         </footer>
       </main>
     </>

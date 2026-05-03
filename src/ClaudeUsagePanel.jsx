@@ -3,24 +3,26 @@ import { useEffect, useMemo, useState } from "react";
 const METRIC_KEYS = [
   { label: "Sessions", key: "sessions" },
   { label: "Messages", key: "messages" },
-  { label: "Total tokens", key: "totalTokens" },
+  { label: "Tokens", key: "totalTokens" },
   { label: "Active days", key: "activeDays" },
-  { label: "Current streak", key: "currentStreak" },
-  { label: "Longest streak", key: "longestStreak" },
-  { label: "Peak hour", key: "peakHour" },
-  { label: "Favorite model", key: "favoriteModel" },
 ];
+
+const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});
 
 function formatMetricValue(key, value) {
   if (typeof value !== "number") {
     return value ?? "--";
   }
 
-  if (key === "messages") {
-    return value.toLocaleString();
+  if (key === "totalTokens" && value >= 1_000_000) {
+    return `${(value / 1_000_000).toFixed(1)}M`;
   }
 
-  return String(value);
+  return value.toLocaleString();
 }
 
 function chunkByWeek(days) {
@@ -30,14 +32,9 @@ function chunkByWeek(days) {
 
   const weeks = [];
   for (let index = 0; index < days.length; index += 7) {
-    const week = days.slice(index, index + 7).map((day) => {
-      if (Number.isFinite(day?.level)) {
-        return Math.max(0, Math.min(4, day.level));
-      }
-      return 0;
-    });
+    const week = days.slice(index, index + 7);
     while (week.length < 7) {
-      week.push(0);
+      week.push({ date: "", count: 0, level: 0 });
     }
     weeks.push(week);
   }
@@ -45,23 +42,35 @@ function chunkByWeek(days) {
   return weeks;
 }
 
-function normalizeActivityMatrix(matrix) {
-  if (!Array.isArray(matrix)) {
-    return [];
-  }
-
-  return matrix.map((week) =>
-    Array.isArray(week)
-      ? week
-          .slice(0, 7)
-          .map((level) => (Number.isFinite(level) ? Math.max(0, Math.min(4, level)) : 0))
-      : [0, 0, 0, 0, 0, 0, 0],
-  );
+function formatDay(day) {
+  if (!day?.date) return "No activity";
+  const readableDate = DATE_FORMATTER.format(new Date(`${day.date}T00:00:00Z`));
+  if (!day.count) return `No Claude messages on ${readableDate}`;
+  return `${day.count.toLocaleString()} Claude messages on ${readableDate}`;
 }
 
-function ClaudeUsagePanel() {
+function buildTrend(days) {
+  const activeDays = Array.isArray(days) ? days.filter((day) => day.date).slice(-42) : [];
+  const max = Math.max(...activeDays.map((day) => day.count || 0), 1);
+  const width = 620;
+  const height = 160;
+  const points = activeDays.map((day, index) => {
+    const x = activeDays.length === 1 ? width : (index / (activeDays.length - 1)) * width;
+    const y = height - ((day.count || 0) / max) * (height - 18) - 9;
+    return { ...day, x, y };
+  });
+
+  return {
+    max,
+    points,
+    line: points.map((point) => `${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(" "),
+  };
+}
+
+function ClaudeUsagePanel({ compact = false }) {
   const [payload, setPayload] = useState(null);
   const [loadError, setLoadError] = useState(false);
+  const [hoveredDay, setHoveredDay] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -96,23 +105,15 @@ function ClaudeUsagePanel() {
     };
   }, []);
 
-  const activityMatrix = useMemo(
-    () => {
-      const directMatrix = normalizeActivityMatrix(payload?.activityMatrix ?? []);
-      if (directMatrix.length > 0) {
-        return directMatrix;
-      }
-
-      return chunkByWeek(payload?.heatmap?.days ?? []);
-    },
-    [payload],
-  );
-
-  const metrics = payload?.summary ?? payload ?? {};
+  const days = payload?.heatmap?.days ?? [];
+  const weeks = useMemo(() => chunkByWeek(days), [days]);
+  const trend = useMemo(() => buildTrend(days), [days]);
+  const metrics = payload?.summary ?? {};
+  const statusLine = hoveredDay ? formatDay(hoveredDay) : "Hover a day";
 
   if (!payload && !loadError) {
     return (
-      <article className="claude-usage-card">
+      <article className="signal-panel">
         <p className="muted">Loading Claude usage data...</p>
       </article>
     );
@@ -120,7 +121,7 @@ function ClaudeUsagePanel() {
 
   if (loadError) {
     return (
-      <article className="claude-usage-card">
+      <article className="signal-panel">
         <p className="muted small">
           Could not load Claude usage data. Update <code>public/data/claude-usage.json</code> and
           redeploy.
@@ -130,50 +131,69 @@ function ClaudeUsagePanel() {
   }
 
   return (
-    <article className="claude-usage-card">
-      <div className="claude-metric-grid">
+    <article className={`signal-panel claude-usage-card${compact ? " compact" : ""}`}>
+      <div className="panel-head">
+        <h2>Claude Code Usage</h2>
+        <span className="panel-meta">{statusLine}</span>
+      </div>
+
+      <div className="metric-row">
         {METRIC_KEYS.map(({ label, key }) => (
-          <div className="claude-metric-tile" key={key}>
-            <div className="claude-metric-label">{label}</div>
-            <div className="claude-metric-value">
-              {formatMetricValue(
-                key,
-                key === "sessions"
-                  ? metrics.sessions
-                  : key === "messages"
-                    ? metrics.messages
-                    : key === "totalTokens"
-                      ? metrics.totalTokens
-                      : key === "activeDays"
-                        ? metrics.activeDays
-                        : key === "currentStreak"
-                          ? metrics.currentStreak ?? metrics.currentStreakDays
-                          : key === "longestStreak"
-                            ? metrics.longestStreak ?? metrics.longestStreakDays
-                            : key === "peakHour"
-                              ? metrics.peakHour ?? metrics.peakHourLabel
-                              : metrics.favoriteModel,
-              )}
-            </div>
+          <div className="metric-tile" key={key}>
+            <span>{label}</span>
+            <strong>{formatMetricValue(key, metrics[key])}</strong>
           </div>
         ))}
       </div>
 
-      {activityMatrix.length > 0 && (
-        <div className="claude-activity-shell">
-          <div className="claude-activity-grid">
-            {activityMatrix.map((week, weekIndex) => (
-              <div key={`claude-week-${weekIndex}`} className="claude-week-column">
-                {week.map((level, dayIndex) => (
-                  <span
-                    key={`claude-cell-${weekIndex}-${dayIndex}`}
-                    className={`claude-cell level-${level}`}
-                    aria-hidden="true"
+      {weeks.length > 0 && (
+        <div className="activity-shell">
+          <div className="activity-grid claude-activity-grid">
+            {weeks.map((week, weekIndex) => (
+              <div key={`claude-week-${weekIndex}`} className="activity-week">
+                {week.map((day, dayIndex) => (
+                  <button
+                    key={day.date || `empty-${weekIndex}-${dayIndex}`}
+                    type="button"
+                    className={`activity-cell claude-cell level-${day.level || 0}`}
+                    aria-label={formatDay(day)}
+                    onMouseEnter={() => setHoveredDay(day)}
+                    onMouseLeave={() => setHoveredDay(null)}
+                    onFocus={() => setHoveredDay(day)}
+                    onBlur={() => setHoveredDay(null)}
                   />
                 ))}
               </div>
             ))}
           </div>
+          <div className="legend">
+            <span>Less</span>
+            {[0, 1, 2, 3, 4].map((level) => (
+              <span key={level} className={`activity-cell claude-cell level-${level}`} />
+            ))}
+            <span>More</span>
+          </div>
+        </div>
+      )}
+
+      {!compact && trend.points.length > 2 && (
+        <div className="trend-panel">
+          <div className="trend-head">
+            <span>Claude Messages (daily)</span>
+            <span>Peak {trend.max.toLocaleString()}</span>
+          </div>
+          <svg viewBox="0 0 620 160" role="img" aria-label="Daily Claude message trend">
+            <polyline className="trend-line" points={trend.line} />
+            {trend.points.map((point) => (
+              <circle
+                key={point.date}
+                className="trend-dot"
+                cx={point.x}
+                cy={point.y}
+                r={point.date === hoveredDay?.date ? 5 : 3}
+              />
+            ))}
+          </svg>
         </div>
       )}
     </article>

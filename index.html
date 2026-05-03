@@ -16,6 +16,23 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ks6573.github.io/" />
+    <script>
+      (() => {
+        try {
+          const storedTheme = localStorage.getItem("portfolio-theme");
+          const theme =
+            storedTheme === "light" || storedTheme === "dark"
+              ? storedTheme
+              : matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (_error) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

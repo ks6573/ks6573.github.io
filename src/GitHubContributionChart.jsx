@@ -165,7 +165,7 @@ function GitHubContributionChart({ username }) {
     : "Hover a day to inspect contributions.";
 
   return (
-    <article className="github-heatmap-card">
+    <article className="signal-panel github-heatmap-card">
       {!payload && !loadError && <p className="muted">Loading contribution activity...</p>}
 
       {loadError && (
@@ -177,7 +177,10 @@ function GitHubContributionChart({ username }) {
 
       {payload && model.weeks.length > 0 && (
         <>
-          <p className="github-heatmap-status">{statusLine}</p>
+          <div className="panel-head">
+            <h2>GitHub Contributions</h2>
+            <span className="panel-meta">{statusLine}</span>
+          </div>
 
           <div className="github-heatmap-shell">
             <div className="github-heatmap-months">

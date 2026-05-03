@@ -1,43 +1,8 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import ProjectSignalTable from "./ProjectSignalTable";
 import SiteHeader from "./SiteHeader";
-import GitHubContributionChart from "./GitHubContributionChart";
-import ClaudeUsagePanel from "./ClaudeUsagePanel";
-
-const projects = [
-  {
-    title: "SysControl",
-    pill: "MCP / Systems",
-    description:
-      "Cross-platform AI systems copilot combining a 57-tool MCP server with terminal and chat interfaces (Claude Desktop, local/cloud Ollama, Telegram/WhatsApp/Messenger) for real-time diagnostics, safe process control, and actionable performance optimization.",
-    meta: ["Python", "MCP", "Systems Copilot"],
-    url: "https://github.com/ks6573/SysControl",
-  },
-  {
-    title: "PerformanceIntelligence",
-    pill: "Performance / Tooling",
-    description:
-      "iOS app that monitors device health in real time, computes a live performance score, and recommends targeted actions to prevent slowdowns.",
-    meta: ["Swift", "iOS", "Performance Monitoring"],
-    url: "https://github.com/ks6573/PerformanceIntelligence",
-  },
-  {
-    title: "OptionsTitan",
-    pill: "Quant / ML",
-    description:
-      "Python-based options prediction and strategy modeling system using engineered features like Greeks, technical indicators, and VIX regimes.",
-    meta: ["Python", "Options Modeling", "Feature Engineering"],
-    url: "https://github.com/ks6573/OptionsTitan",
-  },
-  {
-    title: "PSA",
-    pill: "Applied ML",
-    description:
-      "Password Strength Analyzer that uses machine learning to assess and visualize password robustness.",
-    meta: ["Python", "Security", "Machine Learning"],
-    url: "https://github.com/ks6573/PSA",
-  },
-];
+import TypedText from "./TypedText";
+import { featuredProjects } from "./projectData";
 
 const GITHUB_USERNAME = "ks6573";
 
@@ -52,7 +17,7 @@ function ProjectsPage() {
     async function loadGitHubData() {
       try {
         const repoResponse = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=12`,
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc&per_page=100`,
         );
         if (!repoResponse.ok) {
           throw new Error("Failed to load repositories");
@@ -76,7 +41,6 @@ function ProjectsPage() {
           setRepoLoadError(true);
         }
       }
-
     }
 
     loadGitHubData();
@@ -86,118 +50,57 @@ function ProjectsPage() {
     };
   }, []);
 
-  const selectedProjectNames = new Set(projects.map((project) => project.title.toLowerCase()));
-
-  const mergedProjects = [
-    ...projects.map((project) => ({
-      key: `selected-${project.title}`,
-      title: project.title,
-      pill: project.pill,
-      description: project.description,
-      meta: project.meta,
-      url: project.url,
-    })),
-    ...githubRepos
-      .filter((repo) => !selectedProjectNames.has(repo.name.toLowerCase()))
-      .slice(0, 4)
+  const mergedProjects = useMemo(() => {
+    const featuredNames = new Set(
+      featuredProjects.flatMap((project) => [project.title, project.repoName].filter(Boolean).map((name) => name.toLowerCase())),
+    );
+    const liveRepos = githubRepos
+      .filter((repo) => !featuredNames.has(repo.name.toLowerCase()))
+      .slice(0, 5)
       .map((repo) => ({
-        key: `repo-${repo.id}`,
         title: repo.name,
-        pill: "Recent GitHub",
+        focus: repo.language || "Code",
+        impact: repo.stargazers_count > 0 ? `${repo.stargazers_count} stars` : "Recent GitHub",
+        tech: repo.language || "Repository",
+        updated: new Date(repo.pushed_at).toLocaleDateString(undefined, {
+          month: "short",
+          day: "2-digit",
+        }),
         description: repo.description || "No description added yet.",
-        meta: [
-          repo.language || "Code",
-          `Updated ${new Date(repo.pushed_at).toLocaleDateString(undefined, {
-            year: "numeric",
-            month: "short",
-            day: "2-digit",
-          })}`,
-        ],
         url: repo.html_url,
-      })),
-  ];
+      }));
+
+    return [...featuredProjects, ...liveRepos];
+  }, [githubRepos]);
 
   return (
     <>
       <SiteHeader />
 
-      <main className="container">
-        <section className="hero">
-          <h1>
-            Projects and recent builds
-            <span className="muted"> focused on practical, measurable ML outcomes.</span>
-          </h1>
-          <p className="lead">
-            Check out a few ML projects I’ve worked on, plus the latest stuff I’m shipping on
-            GitHub.
-          </p>
-          <div className="hero-actions">
-            <Link className="btn secondary" to="/about.html">
-              About Me
-            </Link>
-          </div>
+      <main className="container dashboard-page">
+        <section className="hero compact-hero">
+          <TypedText as="h1" text="Projects" speed={34} />
+          <TypedText
+            as="p"
+            className="lead"
+            text="Selected builds and live repository signals, organized for scan speed."
+            speed={12}
+            startDelay={330}
+          />
         </section>
 
         <section className="section">
-          <div className="section-head">
-            <h2>Featured & Recent Work</h2>
-          </div>
-
-          <div className="grid">
-            {mergedProjects.map((project) => (
-              <article key={project.key} className="card">
-                <div className="card-top">
-                  <h3>{project.title}</h3>
-                  <span className="pill">{project.pill}</span>
-                </div>
-                <p>{project.description}</p>
-                <div className="meta">
-                  {project.meta.map((item, index) => (
-                    <span key={`${project.title}-${item}`}>
-                      {index > 0 && <span>• </span>}
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <div className="links">
-                  <a href={project.url} target="_blank" rel="noreferrer">
-                    View repository
-                  </a>
-                </div>
-              </article>
-            ))}
-
-            {!repoLoadError && githubRepos.length === 0 && (
-              <article className="card">
-                <p className="muted">Loading latest GitHub repositories...</p>
-              </article>
-            )}
-          </div>
-
+          <ProjectSignalTable projects={mergedProjects} title="Featured & Recent Work" />
           {repoLoadError && (
-            <p className="muted small">
-              Live GitHub updates are unavailable right now. Featured projects above are still
-              up to date.
+            <p className="muted small panel-note">
+              Live GitHub updates are unavailable right now. Featured projects are still shown.
             </p>
           )}
         </section>
 
-        <section className="section">
-          <div className="section-head">
-            <h2>Live GitHub Contributions</h2>
-          </div>
-          <GitHubContributionChart username={GITHUB_USERNAME} />
-        </section>
-
-        <section className="section">
-          <div className="section-head">
-            <h2>Claude Code Usage</h2>
-          </div>
-          <ClaudeUsagePanel />
-        </section>
-
         <footer className="footer">
           <div className="muted">© {year} Karan Seroy</div>
+          <div className="terminal-prompt">projects --recent</div>
         </footer>
       </main>
     </>
