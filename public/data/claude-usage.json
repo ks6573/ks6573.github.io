@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-05-02T23:52:44.548Z",
-  "sourcePath": "~/.claude/stats-cache.json",
-  "sourceLastComputedDate": "2026-05-02",
+  "generatedAt": "2026-05-06T19:06:55.838Z",
+  "sourcePath": "~/.claude/stats-cache.json + ~/.claude/projects/*.jsonl",
+  "sourceLastComputedDate": "2026-05-06",
   "summary": {
-    "sessions": 142,
-    "messages": 68464,
-    "totalTokens": 22800000,
-    "activeDays": 40,
-    "currentStreakDays": 6,
+    "sessions": 151,
+    "messages": 76971,
+    "totalTokens": 25217771,
+    "activeDays": 44,
+    "currentStreakDays": 10,
     "longestStreakDays": 20,
     "peakHourLabel": "3 PM",
-    "favoriteModel": "Opus 4.7"
+    "favoriteModel": "claude-opus-4-7"
   },
   "heatmap": {
     "days": [
@@ -618,6 +618,31 @@
         "date": "2026-05-01",
         "count": 2796,
         "level": 3
+      },
+      {
+        "date": "2026-05-02",
+        "count": 1896,
+        "level": 2
+      },
+      {
+        "date": "2026-05-03",
+        "count": 3380,
+        "level": 3
+      },
+      {
+        "date": "2026-05-04",
+        "count": 2880,
+        "level": 3
+      },
+      {
+        "date": "2026-05-05",
+        "count": 694,
+        "level": 1
+      },
+      {
+        "date": "2026-05-06",
+        "count": 644,
+        "level": 1
       }
     ],
     "maxCount": 5193
