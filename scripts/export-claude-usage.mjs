@@ -9,6 +9,7 @@ const PROJECTS_PATH =
 const OUTPUT_PATH = join(process.cwd(), "public", "data", "claude-usage.json");
 const HEATMAP_START_DATE = process.env.CLAUDE_HEATMAP_START || "2026-01-01";
 const SESSION_ENTRY_TYPES = new Set(["user", "assistant", "attachment", "system", "progress"]);
+const MESSAGE_ENTRY_TYPES = new Set(["user", "assistant"]);
 const SYNTHETIC_MODEL = "<synthetic>";
 
 function parseDay(day) {
@@ -23,7 +24,7 @@ function numberOrZero(value) {
   return Number.isFinite(value) ? value : 0;
 }
 
-function computeStreaks(activityDates) {
+function computeStreaks(activityDates, todayString = toDayString(new Date())) {
   if (activityDates.length === 0) {
     return { currentStreakDays: 0, longestStreakDays: 0 };
   }
@@ -46,7 +47,7 @@ function computeStreaks(activityDates) {
   }
 
   let current = 0;
-  let cursor = parseDay(dates[dates.length - 1]);
+  let cursor = parseDay(todayString);
   while (dateSet.has(toDayString(cursor))) {
     current += 1;
     cursor = new Date(cursor.getTime() - 86400000);
@@ -65,6 +66,10 @@ function formatPeakHour(hour) {
 
 function normalizeModelName(model) {
   if (!model) return "N/A";
+  if (model === "claude-opus-4-7") return "Opus 4.7";
+  if (model === "claude-opus-4-6") return "Opus 4.6";
+  if (model === "claude-sonnet-4-6") return "Sonnet 4.6";
+  if (model === "claude-haiku-4-5-20251001") return "Haiku 4.5";
   return model;
 }
 
@@ -186,6 +191,7 @@ async function buildStatsFromProjects(projectsPath, options = {}) {
     if (fromDate && date < fromDate) continue;
 
     const sessionId = basename(sessionFile, ".jsonl");
+    const messageCount = entries.filter((entry) => MESSAGE_ENTRY_TYPES.has(entry.type)).length;
     const dailyActivity = dailyActivityByDate.get(date) ?? {
       date,
       messageCount: 0,
@@ -194,7 +200,7 @@ async function buildStatsFromProjects(projectsPath, options = {}) {
     };
 
     dailyActivity.sessionCount += 1;
-    dailyActivity.messageCount += entries.length;
+    dailyActivity.messageCount += messageCount;
     dailyActivityByDate.set(date, dailyActivity);
 
     const hour = startedAt.getHours();
@@ -203,7 +209,7 @@ async function buildStatsFromProjects(projectsPath, options = {}) {
     sessionStats.push({
       sessionId,
       duration: endedAt.getTime() - startedAt.getTime(),
-      messageCount: entries.length,
+      messageCount,
       timestamp: firstEntry.timestamp,
     });
 

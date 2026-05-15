@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-05-06T19:06:55.838Z",
+  "generatedAt": "2026-05-15T05:51:12.581Z",
   "sourcePath": "~/.claude/stats-cache.json + ~/.claude/projects/*.jsonl",
-  "sourceLastComputedDate": "2026-05-06",
+  "sourceLastComputedDate": "2026-05-14",
   "summary": {
-    "sessions": 151,
-    "messages": 76971,
-    "totalTokens": 25217771,
-    "activeDays": 44,
-    "currentStreakDays": 10,
+    "sessions": 174,
+    "messages": 82191,
+    "totalTokens": 33100000,
+    "activeDays": 51,
+    "currentStreakDays": 0,
     "longestStreakDays": 20,
-    "peakHourLabel": "3 PM",
-    "favoriteModel": "claude-opus-4-7"
+    "peakHourLabel": "12 PM",
+    "favoriteModel": "Opus 4.7"
   },
   "heatmap": {
     "days": [
@@ -621,27 +621,67 @@
       },
       {
         "date": "2026-05-02",
-        "count": 1896,
-        "level": 2
+        "count": 987,
+        "level": 1
       },
       {
         "date": "2026-05-03",
-        "count": 3380,
-        "level": 3
+        "count": 1557,
+        "level": 2
       },
       {
         "date": "2026-05-04",
-        "count": 2880,
-        "level": 3
+        "count": 1341,
+        "level": 2
       },
       {
         "date": "2026-05-05",
-        "count": 694,
+        "count": 371,
         "level": 1
       },
       {
         "date": "2026-05-06",
-        "count": 644,
+        "count": 992,
+        "level": 1
+      },
+      {
+        "date": "2026-05-07",
+        "count": 1888,
+        "level": 2
+      },
+      {
+        "date": "2026-05-08",
+        "count": 387,
+        "level": 1
+      },
+      {
+        "date": "2026-05-09",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-10",
+        "count": 4,
+        "level": 1
+      },
+      {
+        "date": "2026-05-11",
+        "count": 3714,
+        "level": 3
+      },
+      {
+        "date": "2026-05-12",
+        "count": 168,
+        "level": 1
+      },
+      {
+        "date": "2026-05-13",
+        "count": 2031,
+        "level": 2
+      },
+      {
+        "date": "2026-05-14",
+        "count": 1284,
         "level": 1
       }
     ],
