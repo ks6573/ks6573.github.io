@@ -20,11 +20,18 @@ function toDayString(date) {
   return date.toISOString().slice(0, 10);
 }
 
+function toLocalDayString(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 function numberOrZero(value) {
   return Number.isFinite(value) ? value : 0;
 }
 
-function computeStreaks(activityDates, todayString = toDayString(new Date())) {
+function computeStreaks(activityDates, todayString = toLocalDayString()) {
   if (activityDates.length === 0) {
     return { currentStreakDays: 0, longestStreakDays: 0 };
   }

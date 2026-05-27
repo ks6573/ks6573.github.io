@@ -8,10 +8,17 @@ const repoRoot = resolve(__dirname, "..");
 
 const username = process.env.GITHUB_USERNAME ?? "ks6573";
 const from = process.env.GITHUB_FROM ?? "2026-01-01";
-const to = process.env.GITHUB_TO ?? new Date().toISOString().slice(0, 10);
+const to = process.env.GITHUB_TO ?? toLocalDayString();
 
 const outputDirectory = resolve(repoRoot, "public", "data");
 const outputPath = resolve(outputDirectory, "github-contributions.json");
+
+function toLocalDayString(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
 function readAttribute(tag, attributeName) {
   const match = tag.match(new RegExp(`${attributeName}="([^"]*)"`, "i"));

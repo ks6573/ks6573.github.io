@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-05-15T05:51:12.581Z",
+  "generatedAt": "2026-05-27T03:53:29.940Z",
   "sourcePath": "~/.claude/stats-cache.json + ~/.claude/projects/*.jsonl",
-  "sourceLastComputedDate": "2026-05-14",
+  "sourceLastComputedDate": "2026-05-26",
   "summary": {
-    "sessions": 174,
-    "messages": 82191,
-    "totalTokens": 33100000,
-    "activeDays": 51,
-    "currentStreakDays": 0,
+    "sessions": 210,
+    "messages": 94298,
+    "totalTokens": 48900000,
+    "activeDays": 59,
+    "currentStreakDays": 1,
     "longestStreakDays": 20,
-    "peakHourLabel": "12 PM",
+    "peakHourLabel": "3 PM",
     "favoriteModel": "Opus 4.7"
   },
   "heatmap": {
@@ -681,8 +681,68 @@
       },
       {
         "date": "2026-05-14",
-        "count": 1284,
+        "count": 1293,
         "level": 1
+      },
+      {
+        "date": "2026-05-15",
+        "count": 1989,
+        "level": 2
+      },
+      {
+        "date": "2026-05-16",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-17",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-18",
+        "count": 1136,
+        "level": 1
+      },
+      {
+        "date": "2026-05-19",
+        "count": 1698,
+        "level": 2
+      },
+      {
+        "date": "2026-05-20",
+        "count": 874,
+        "level": 1
+      },
+      {
+        "date": "2026-05-21",
+        "count": 248,
+        "level": 1
+      },
+      {
+        "date": "2026-05-22",
+        "count": 2238,
+        "level": 2
+      },
+      {
+        "date": "2026-05-23",
+        "count": 1952,
+        "level": 2
+      },
+      {
+        "date": "2026-05-24",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-25",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-05-26",
+        "count": 1960,
+        "level": 2
       }
     ],
     "maxCount": 5193

@@ -83,21 +83,9 @@ function buildCalendar(days) {
     weeks.push(week);
   }
 
-  const monthLabels = weeks.map((_, weekIndex) => {
-    const weekStart = addDays(calendarStart, weekIndex * 7);
-    const isEarlyMonth = weekStart.getUTCDate() <= 7;
-    if (!isEarlyMonth) {
-      return "";
-    }
-
-    if (weekIndex > 0) {
-      const previousWeekStart = addDays(weekStart, -7);
-      if (previousWeekStart.getUTCMonth() === weekStart.getUTCMonth()) {
-        return "";
-      }
-    }
-
-    return MONTH_FORMATTER.format(weekStart);
+  const monthLabels = weeks.map((week) => {
+    const firstOfMonth = week.find((day) => parseDateUTC(day.date).getUTCDate() === 1);
+    return firstOfMonth ? MONTH_FORMATTER.format(parseDateUTC(firstOfMonth.date)) : "";
   });
 
   const visibleLookup = new Map();
