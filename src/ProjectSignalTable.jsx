@@ -1,5 +1,26 @@
 import { useMemo, useState } from "react";
 
+function ProjectDetailCard({ project }) {
+  return (
+    <div className="project-detail">
+      <div>
+        <div className="detail-title">{project.title}</div>
+        <p>{project.description}</p>
+      </div>
+      <div className="detail-meta">
+        <span>{project.tech}</span>
+        {project.url ? (
+          <a href={project.url} target="_blank" rel="noreferrer">
+            Repository
+          </a>
+        ) : (
+          <span>Resume project</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function ProjectSignalTable({ projects, title = "Recent Projects", compact = false }) {
   const [selectedKey, setSelectedKey] = useState(projects[0]?.title ?? "");
 
@@ -7,6 +28,16 @@ function ProjectSignalTable({ projects, title = "Recent Projects", compact = fal
     () => projects.find((project) => project.title === selectedKey) ?? projects[0],
     [projects, selectedKey],
   );
+  const visibleDetailProjects = useMemo(() => {
+    if (!selectedProject) return [];
+
+    if (selectedProject.title !== "SysControl") {
+      return [selectedProject];
+    }
+
+    const terminaude = projects.find((project) => project.title === "Terminaude");
+    return terminaude ? [selectedProject, terminaude] : [selectedProject];
+  }, [projects, selectedProject]);
 
   if (!projects.length) {
     return (
@@ -64,24 +95,9 @@ function ProjectSignalTable({ projects, title = "Recent Projects", compact = fal
         </table>
       </div>
 
-      {selectedProject && (
-        <div className="project-detail">
-          <div>
-            <div className="detail-title">{selectedProject.title}</div>
-            <p>{selectedProject.description}</p>
-          </div>
-          <div className="detail-meta">
-            <span>{selectedProject.tech}</span>
-            {selectedProject.url ? (
-              <a href={selectedProject.url} target="_blank" rel="noreferrer">
-                Repository
-              </a>
-            ) : (
-              <span>Resume project</span>
-            )}
-          </div>
-        </div>
-      )}
+      {visibleDetailProjects.map((project) => (
+        <ProjectDetailCard key={`detail-${project.title}`} project={project} />
+      ))}
     </article>
   );
 }
