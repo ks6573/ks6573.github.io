@@ -10,6 +10,16 @@ export const featuredProjects = [
     url: "https://github.com/ks6573/SysControl",
   },
   {
+    title: "Terminaude",
+    focus: "Claude-first terminal",
+    impact: "macOS terminal wrapper",
+    tech: "Swift, macOS",
+    updated: "Jun 05",
+    description:
+      "macOS terminal wrapper designed around a Claude-first workflow for command-line work.",
+    url: "https://github.com/ks6573/Terminaude",
+  },
+  {
     title: "PerformanceIntelligence",
     focus: "Device telemetry",
     impact: "Live performance score",

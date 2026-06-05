@@ -73,6 +73,7 @@ function formatPeakHour(hour) {
 
 function normalizeModelName(model) {
   if (!model) return "N/A";
+  if (model === "claude-opus-4-8") return "Opus 4.8";
   if (model === "claude-opus-4-7") return "Opus 4.7";
   if (model === "claude-opus-4-6") return "Opus 4.6";
   if (model === "claude-sonnet-4-6") return "Sonnet 4.6";
