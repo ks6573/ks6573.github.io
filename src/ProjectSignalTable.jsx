@@ -28,16 +28,7 @@ function ProjectSignalTable({ projects, title = "Recent Projects", compact = fal
     () => projects.find((project) => project.title === selectedKey) ?? projects[0],
     [projects, selectedKey],
   );
-  const visibleDetailProjects = useMemo(() => {
-    if (!selectedProject) return [];
-
-    if (selectedProject.title !== "SysControl") {
-      return [selectedProject];
-    }
-
-    const terminaude = projects.find((project) => project.title === "Terminaude");
-    return terminaude ? [selectedProject, terminaude] : [selectedProject];
-  }, [projects, selectedProject]);
+  const visibleDetailProjects = selectedProject ? [selectedProject] : [];
 
   if (!projects.length) {
     return (

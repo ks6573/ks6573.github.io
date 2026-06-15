@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-05T08:37:01.003Z",
+  "generatedAt": "2026-06-15T11:29:10.570Z",
   "sourcePath": "~/.claude/stats-cache.json + ~/.claude/projects/*.jsonl",
-  "sourceLastComputedDate": "2026-06-05",
+  "sourceLastComputedDate": "2026-06-15",
   "summary": {
-    "sessions": 319,
-    "messages": 140739,
-    "totalTokens": 98200000,
-    "activeDays": 67,
-    "currentStreakDays": 11,
+    "sessions": 346,
+    "messages": 150279,
+    "totalTokens": 108848425,
+    "activeDays": 76,
+    "currentStreakDays": 1,
     "longestStreakDays": 20,
     "peakHourLabel": "3 PM",
     "favoriteModel": "Opus 4.8"
@@ -791,7 +791,57 @@
       },
       {
         "date": "2026-06-05",
-        "count": 989,
+        "count": 1349,
+        "level": 1
+      },
+      {
+        "date": "2026-06-06",
+        "count": 419,
+        "level": 1
+      },
+      {
+        "date": "2026-06-07",
+        "count": 90,
+        "level": 1
+      },
+      {
+        "date": "2026-06-08",
+        "count": 1802,
+        "level": 1
+      },
+      {
+        "date": "2026-06-09",
+        "count": 2889,
+        "level": 2
+      },
+      {
+        "date": "2026-06-10",
+        "count": 1169,
+        "level": 1
+      },
+      {
+        "date": "2026-06-11",
+        "count": 1189,
+        "level": 1
+      },
+      {
+        "date": "2026-06-12",
+        "count": 850,
+        "level": 1
+      },
+      {
+        "date": "2026-06-13",
+        "count": 93,
+        "level": 1
+      },
+      {
+        "date": "2026-06-14",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-15",
+        "count": 661,
         "level": 1
       }
     ],
