@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-07-03T17:46:09.134Z",
+  "generatedAt": "2026-07-11T07:22:26.928Z",
   "sourcePath": "~/.claude/stats-cache.json + ~/.claude/projects/*.jsonl",
-  "sourceLastComputedDate": "2026-07-02",
+  "sourceLastComputedDate": "2026-07-10",
   "summary": {
-    "sessions": 369,
-    "messages": 159638,
-    "totalTokens": 140200000,
-    "activeDays": 87,
-    "currentStreakDays": 0,
+    "sessions": 326,
+    "messages": 151875,
+    "totalTokens": 128300000,
+    "activeDays": 85,
+    "currentStreakDays": 1,
     "longestStreakDays": 20,
-    "peakHourLabel": "3 PM",
+    "peakHourLabel": "1 PM",
     "favoriteModel": "Opus 4.8"
   },
   "heatmap": {
@@ -781,23 +781,23 @@
       },
       {
         "date": "2026-06-03",
-        "count": 805,
-        "level": 1
+        "count": 0,
+        "level": 0
       },
       {
         "date": "2026-06-04",
-        "count": 1554,
-        "level": 1
+        "count": 0,
+        "level": 0
       },
       {
         "date": "2026-06-05",
-        "count": 1349,
-        "level": 1
+        "count": 0,
+        "level": 0
       },
       {
         "date": "2026-06-06",
-        "count": 419,
-        "level": 1
+        "count": 0,
+        "level": 0
       },
       {
         "date": "2026-06-07",
@@ -806,13 +806,13 @@
       },
       {
         "date": "2026-06-08",
-        "count": 1802,
-        "level": 1
+        "count": 0,
+        "level": 0
       },
       {
         "date": "2026-06-09",
-        "count": 2889,
-        "level": 2
+        "count": 0,
+        "level": 0
       },
       {
         "date": "2026-06-10",
@@ -927,6 +927,46 @@
       {
         "date": "2026-07-02",
         "count": 9,
+        "level": 1
+      },
+      {
+        "date": "2026-07-03",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-04",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-05",
+        "count": 199,
+        "level": 1
+      },
+      {
+        "date": "2026-07-06",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-07",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-08",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-09",
+        "count": 37,
+        "level": 1
+      },
+      {
+        "date": "2026-07-10",
+        "count": 802,
         "level": 1
       }
     ],
