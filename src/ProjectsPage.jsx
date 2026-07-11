@@ -5,6 +5,7 @@ import TypedText from "./TypedText";
 import { featuredProjects } from "./projectData";
 
 const GITHUB_USERNAME = "ks6573";
+const HIDDEN_REPO_NAMES = new Set(["ks6573.github.io", "iste-activity4"]);
 
 function ProjectsPage() {
   const year = new Date().getFullYear();
@@ -29,7 +30,7 @@ function ProjectsPage() {
         }
 
         const newestRepos = repoData
-          .filter((repo) => !repo.fork && repo.name !== "ks6573.github.io")
+          .filter((repo) => !repo.fork && !HIDDEN_REPO_NAMES.has(repo.name.toLowerCase()))
           .slice(0, 6);
 
         if (isMounted) {
