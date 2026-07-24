@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import ChatGPTCodexUsagePanel from "./ChatGPTCodexUsagePanel";
 import ClaudeUsagePanel from "./ClaudeUsagePanel";
 import FloatingTerminal from "./FloatingTerminal";
+import GitHubContributionChart from "./GitHubContributionChart";
 import SiteHeader from "./SiteHeader";
 import TypedText from "./TypedText";
+
+const GITHUB_USERNAME = "ks6573";
 
 function App() {
   const year = new Date().getFullYear();
@@ -33,6 +36,7 @@ function App() {
         <section className="dashboard-grid">
           <ChatGPTCodexUsagePanel />
           <ClaudeUsagePanel />
+          <GitHubContributionChart username={GITHUB_USERNAME} />
         </section>
 
         <section className="section about-strip">
