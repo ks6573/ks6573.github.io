@@ -13,8 +13,10 @@
   --border-strong: rgba(236, 236, 226, .24);
   --accent: #96d66f;
   --accent-2: #f08a3c;
+  --accent-3: #77b7ff;
   --accent-soft: rgba(150, 214, 111, .14);
   --orange-soft: rgba(240, 138, 60, .14);
+  --blue-soft: rgba(119, 183, 255, .14);
   --shadow: none;
   --radius: 6px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -33,8 +35,10 @@
   --border-strong: rgba(30, 32, 27, .25);
   --accent: #4f7f2a;
   --accent-2: #bf631f;
+  --accent-3: #236fa8;
   --accent-soft: rgba(79, 127, 42, .13);
   --orange-soft: rgba(191, 99, 31, .13);
+  --blue-soft: rgba(35, 111, 168, .13);
 }
 
 *{ box-sizing:border-box; }
@@ -447,6 +451,114 @@ main section:nth-of-type(4){ animation-delay: 190ms; }
 .claude-cell.level-3{ background: color-mix(in srgb, var(--accent-2) 72%, var(--panel-2)); }
 .claude-cell.level-4{ background: var(--accent-2); }
 
+.codex-usage-card .metric-row{
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.codex-usage-card .metric-tile{
+  padding: 8px;
+}
+.codex-usage-card .metric-tile strong{
+  font-size: clamp(.98rem, 1.7vw, 1.2rem);
+}
+.codex-activity-shell{
+  margin-top: 4px;
+}
+.codex-activity-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  margin-bottom: 8px;
+}
+.codex-tabs{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  color: var(--muted);
+}
+.codex-tabs strong{
+  color: var(--accent);
+  font-weight: 700;
+}
+.codex-month-row{
+  display:grid;
+  grid-template-columns: repeat(var(--weeks), 8px);
+  column-gap: 2px;
+  min-width:max-content;
+  margin-bottom: 8px;
+}
+.codex-month-row span{
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  line-height: 13px;
+}
+.codex-activity-grid{
+  gap: 2px;
+}
+.codex-activity-grid .activity-week{
+  grid-template-rows: repeat(7, 8px);
+  row-gap: 2px;
+}
+.codex-cell{
+  width:8px;
+  height:8px;
+  border-radius:2px;
+}
+.codex-cell.level-0{ background: color-mix(in srgb, var(--panel-2) 82%, var(--text) 5%); }
+.codex-cell.level-1{ background: color-mix(in srgb, var(--accent-3) 32%, var(--panel-2)); }
+.codex-cell.level-2{ background: color-mix(in srgb, var(--accent-3) 50%, var(--panel-2)); }
+.codex-cell.level-3{ background: color-mix(in srgb, var(--accent-3) 72%, var(--panel-2)); }
+.codex-cell.level-4{ background: var(--accent-3); }
+.codex-usage-detail-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  border-top: 1px solid var(--border);
+  margin-top: 14px;
+  padding-top: 12px;
+}
+.codex-usage-detail-grid h3{
+  margin:0 0 8px;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+}
+.codex-stat-list,
+.codex-plugin-list{
+  display:grid;
+  gap: 6px;
+  margin:0;
+}
+.codex-stat-list div,
+.codex-plugin-list div{
+  display:grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items:baseline;
+}
+.codex-stat-list dt,
+.codex-plugin-list dt{
+  color: var(--muted);
+  font-size: .76rem;
+}
+.codex-stat-list dd,
+.codex-plugin-list dd{
+  margin:0;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .76rem;
+  white-space:nowrap;
+}
+.codex-plugin-list dt{
+  color: var(--text);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
 .legend,
 .github-heatmap-footer{
   display:flex;
@@ -463,6 +575,9 @@ main section:nth-of-type(4){ animation-delay: 190ms; }
   justify-content:space-between;
   min-width: 0;
   flex-wrap:wrap;
+}
+.legend{
+  min-width:max-content;
 }
 .github-heatmap-footer a,
 .text-link,
@@ -851,11 +966,37 @@ code{
 
   .hero h1,
   .compact-hero h1{
-    font-size: clamp(2.6rem, 15vw, 4.2rem);
+    font-size: clamp(2.6rem, 13vw, 3.6rem);
   }
 
   .metric-row{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .codex-usage-card .metric-row{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .codex-activity-head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap: 4px;
+  }
+
+  .codex-usage-detail-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .codex-stat-list div,
+  .codex-plugin-list div{
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+
+  .codex-stat-list dd,
+  .codex-plugin-list dd,
+  .codex-plugin-list dt{
+    white-space:normal;
   }
 
   .panel-head{
