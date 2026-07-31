@@ -3,6 +3,13 @@ import TypedText from "./TypedText";
 
 const experienceTimeline = [
   {
+    title: "ML Engineer / AI Scientist · Legal AI Platform",
+    org: "SwiftLaw",
+    period: "Present",
+    summary:
+      "Building end-to-end NLP extraction pipelines for private-fund formation documents with structured schemas covering fund economics, waterfall tiers, carry, hurdle, and key-person provisions. Designing claim-level grounding and verification workflows, plus multi-agent edit, draft, and question modes with cost-aware orchestration and semantic retrieval over chat history.",
+  },
+  {
     title: "Machine Learning Intern · AI/ML R&D",
     org: "cPacket Networks",
     period: "Jun 2025 - Dec 2025",
