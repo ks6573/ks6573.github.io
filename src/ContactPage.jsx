@@ -4,9 +4,9 @@ import TypedText from "./TypedText";
 const contacts = [
   {
     label: "Email",
-    value: "ks6573@rit.edu",
+    value: "karan1011seroy@gmail.com",
     action: "Send Email",
-    href: "mailto:ks6573@rit.edu",
+    href: "mailto:karan1011seroy@gmail.com",
   },
   {
     label: "GitHub",

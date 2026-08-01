@@ -5,7 +5,7 @@ import TypedText from "./TypedText";
 import { featuredProjects } from "./projectData";
 
 const GITHUB_USERNAME = "ks6573";
-const HIDDEN_REPO_NAMES = new Set(["ks6573.github.io", "iste-activity4"]);
+const HIDDEN_REPO_NAMES = new Set(["ks6573.github.io", "iste-activity4", "homebrew-tap", "g7x-monitor"]);
 
 function ProjectsPage() {
   const year = new Date().getFullYear();
