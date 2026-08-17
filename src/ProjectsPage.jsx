@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import ChatGPTCodexUsagePanel from "./ChatGPTCodexUsagePanel";
+import ClaudeUsagePanel from "./ClaudeUsagePanel";
 import ProjectSignalTable from "./ProjectSignalTable";
 import SiteHeader from "./SiteHeader";
 import TypedText from "./TypedText";
@@ -102,6 +103,7 @@ function ProjectsPage() {
 
         <section className="section project-usage-section">
           <ChatGPTCodexUsagePanel />
+          <ClaudeUsagePanel />
         </section>
 
         <footer className="footer">

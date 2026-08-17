@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ClaudeUsagePanel from "./ClaudeUsagePanel";
 import FloatingTerminal from "./FloatingTerminal";
 import GitHubContributionChart from "./GitHubContributionChart";
 import SiteHeader from "./SiteHeader";
@@ -34,7 +33,6 @@ function App() {
 
         <section className="dashboard-grid">
           <GitHubContributionChart username={GITHUB_USERNAME} />
-          <ClaudeUsagePanel />
         </section>
 
         <section className="section about-strip">
