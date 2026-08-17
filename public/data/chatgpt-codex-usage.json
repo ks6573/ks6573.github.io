@@ -15,229 +15,47 @@
     "mode": "Cumulative",
     "monthLabels": [
       {
-        "label": "Sep",
+        "label": "Jan",
         "weekIndex": 0,
         "span": 4
       },
       {
-        "label": "Oct",
-        "weekIndex": 5,
-        "span": 4
-      },
-      {
-        "label": "Nov",
-        "weekIndex": 9,
-        "span": 4
-      },
-      {
-        "label": "Dec",
-        "weekIndex": 13,
-        "span": 4
-      },
-      {
-        "label": "Jan",
-        "weekIndex": 18,
-        "span": 4
-      },
-      {
         "label": "Feb",
-        "weekIndex": 22,
+        "weekIndex": 4,
         "span": 4
       },
       {
         "label": "Mar",
-        "weekIndex": 27,
+        "weekIndex": 9,
         "span": 4
       },
       {
         "label": "Apr",
-        "weekIndex": 31,
+        "weekIndex": 13,
         "span": 4
       },
       {
         "label": "May",
-        "weekIndex": 36,
+        "weekIndex": 18,
         "span": 4
       },
       {
         "label": "Jun",
-        "weekIndex": 40,
+        "weekIndex": 22,
         "span": 4
       },
       {
         "label": "Jul",
-        "weekIndex": 44,
+        "weekIndex": 26,
         "span": 4
       },
       {
         "label": "Aug",
-        "weekIndex": 49,
+        "weekIndex": 31,
         "span": 3
       }
     ],
     "weeks": [
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       [
         0,
         0,
