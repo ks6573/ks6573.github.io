@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import ChatGPTCodexUsagePanel from "./ChatGPTCodexUsagePanel";
 import ProjectSignalTable from "./ProjectSignalTable";
 import SiteHeader from "./SiteHeader";
 import TypedText from "./TypedText";
@@ -97,6 +98,10 @@ function ProjectsPage() {
               Live GitHub updates are unavailable right now. Featured projects are still shown.
             </p>
           )}
+        </section>
+
+        <section className="section project-usage-section">
+          <ChatGPTCodexUsagePanel />
         </section>
 
         <footer className="footer">

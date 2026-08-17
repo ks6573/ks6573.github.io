@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ChatGPTCodexUsagePanel from "./ChatGPTCodexUsagePanel";
 import ClaudeUsagePanel from "./ClaudeUsagePanel";
 import FloatingTerminal from "./FloatingTerminal";
 import GitHubContributionChart from "./GitHubContributionChart";
@@ -34,9 +33,8 @@ function App() {
         </section>
 
         <section className="dashboard-grid">
-          <ChatGPTCodexUsagePanel />
-          <ClaudeUsagePanel />
           <GitHubContributionChart username={GITHUB_USERNAME} />
+          <ClaudeUsagePanel />
         </section>
 
         <section className="section about-strip">

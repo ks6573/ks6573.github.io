@@ -19,7 +19,13 @@ function formatTokenCount(value) {
 
 function formatDuration(seconds) {
   if (!Number.isFinite(seconds)) return "--";
+  const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor(seconds / 60);
+  if (hours > 0) {
+    const remainingMinutes = Math.floor((seconds % 3600) / 60);
+    return remainingMinutes > 0 ? `${hours}h ${remainingMinutes}m` : `${hours}h`;
+  }
+
   const remainingSeconds = seconds % 60;
   return `${minutes}m ${remainingSeconds}s`;
 }
