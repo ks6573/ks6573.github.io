@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { GitHubActivity, CodexActivity, ClaudeActivity } from "./ActivityPanels";
 import { ProjectList, RecentProjects } from "./ProjectList";
 
@@ -19,7 +20,7 @@ export function HomeView() {
 export function ProjectsView() {
   return <>
     <div className="output-command"><span className="prompt-user">karan@seroy</span><span className="muted">:</span><span>~/projects</span><span className="prompt-dollar">$</span> ls</div>
-    <h1 className="file-heading">~/projects/</h1><p className="file-lead">Tools I’ve built and problems I’ve spent time on.</p><ProjectList /><p className="terminal-note">Open a directory above, or type <button className="inline-command" data-command="open syscontrol">open syscontrol</button>.</p><div className="text-section"><h2># Professional work</h2><p>At SwiftLaw, I work on document extraction, claim-level grounding, and multi-agent editing and drafting workflows.</p><button className="inline-command" data-view="experience">cat experience.log</button></div>
+    <h1 className="file-heading">~/projects/</h1><p className="file-lead">Tools I’ve built and problems I’ve spent time on.</p><ProjectList /><div className="text-section"><h2># Professional work</h2><p>At SwiftLaw, I work on document extraction, claim-level grounding, and multi-agent editing and drafting workflows.</p><Link className="inline-link" to="/about.html">View experience →</Link></div>
 <RecentProjects />
   </>;
 }
@@ -33,7 +34,7 @@ export function ExperienceView() {
 
 export function ContactView() {
   return <>
-    <div className="output-command"><span className="prompt-user">karan@seroy</span><span className="muted">:</span><span>~</span><span className="prompt-dollar">$</span> cat contact.txt</div><h1 className="file-heading">Contact</h1><p className="file-lead">For interesting problems, useful tools, or just a conversation.</p><dl className="contact-list"><div><dt>email</dt><dd><a href="mailto:karan1011seroy@gmail.com">karan1011seroy@gmail.com ↗</a></dd></div><div><dt>github</dt><dd><a href="https://github.com/ks6573" target="_blank" rel="noreferrer">github.com/ks6573 ↗</a></dd></div><div><dt>linkedin</dt><dd><a href="https://linkedin.com/in/karan-seroy/" target="_blank" rel="noreferrer">linkedin.com/in/karan-seroy ↗</a></dd></div></dl><p className="terminal-note">Links open their destination. Nothing is sent from this terminal.</p>
+    <div className="output-command"><span className="prompt-user">karan@seroy</span><span className="muted">:</span><span>~</span><span className="prompt-dollar">$</span> cat contact.txt</div><h1 className="file-heading">Contact</h1><p className="file-lead">For interesting problems, useful tools, or just a conversation.</p><dl className="contact-list"><div><dt>email</dt><dd><a href="mailto:karan1011seroy@gmail.com">karan1011seroy@gmail.com ↗</a></dd></div><div><dt>github</dt><dd><a href="https://github.com/ks6573" target="_blank" rel="noreferrer">github.com/ks6573 ↗</a></dd></div><div><dt>linkedin</dt><dd><a href="https://linkedin.com/in/karan-seroy/" target="_blank" rel="noreferrer">linkedin.com/in/karan-seroy ↗</a></dd></div></dl>
   </>;
 }
 
@@ -48,11 +49,5 @@ export function ActivityView() {
       <section className="activity-section" aria-labelledby="claude-activity-title"><div className="activity-section-heading"><h2 id="claude-activity-title"># Claude Code</h2><span>messages / day</span></div><ClaudeActivity /></section>
     </div>
     <p className="terminal-note">Counts and totals reflect the saved exports, not live usage. ChatGPT + Codex cells show relative levels; Claude cells show dated message counts.</p>
-  </>;
-}
-
-export function HelpView() {
-  return <>
-    <div className="output-command"><span className="prompt-user">karan@seroy</span><span className="muted">:</span><span>~</span><span className="prompt-dollar">$</span> help</div><h1 className="file-heading">A small map of the place.</h1><p className="file-lead">This is an interactive portfolio. Commands navigate the site; they don’t run on your computer.</p><dl className="help-list"><div><dt>whoami / home</dt><dd>Return to the overview</dd></div><div><dt>ls / projects</dt><dd>List project directories</dd></div><div><dt>open syscontrol</dt><dd>Read a project’s README</dd></div><div><dt>cat experience.log</dt><dd>Read my work history</dd></div><div><dt>cat contact.txt</dt><dd>Find my email and profiles</dd></div><div><dt>activity</dt><dd>Inspect GitHub and AI usage</dd></div><div><dt>cd projects / cd ~</dt><dd>Change portfolio directory</dd></div><div><dt>pwd</dt><dd>Print the current virtual path</dd></div><div><dt>theme green / amber / ice</dt><dd>Change the terminal palette</dd></div><div><dt>clear</dt><dd>Clear the terminal output</dd></div></dl><p className="terminal-note">Press <kbd>/</kbd> to focus the prompt, <kbd>↑</kbd> and <kbd>↓</kbd> for history, or <kbd>Tab</kbd> to complete a command. Toggle the Files sidebar with <kbd>⌘/Ctrl+B</kbd> or the panel button. All files are clickable, too.</p>
   </>;
 }

@@ -18,7 +18,7 @@ export function ProjectView({ project }) {
     <h1 className="file-heading">{project.name}</h1>
     <div className="project-meta"><span>{project.stack}</span><span>public repository</span></div>
     <div className="project-body"><p>{project.description}</p><h2># The shape of it</h2><pre className="project-architecture">{project.diagram}</pre><h2># Project notes</h2><p>{project.note}</p>
-      <div className="project-links"><a href={project.url} target="_blank" rel="noreferrer">Open repository ↗</a><button data-command="cd ..">cd ..</button></div>
+      <div className="project-links"><a href={project.url} target="_blank" rel="noreferrer">Open repository ↗</a><Link to={routeHref("projects")}>← All projects</Link></div>
     </div>
   </>;
 }
