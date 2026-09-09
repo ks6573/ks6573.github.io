@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ks6573.github.io/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://ks6573.github.io/projects.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://ks6573.github.io/about.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ks6573.github.io/contact.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://kseroy.me/</loc></url>
+  <url><loc>https://kseroy.me/projects.html</loc></url>
+  <url><loc>https://kseroy.me/about.html</loc></url>
+  <url><loc>https://kseroy.me/contact.html</loc></url>
+  <url><loc>https://kseroy.me/activity.html</loc></url>
 </urlset>

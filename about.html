@@ -1,41 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-palette="green">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Karan Seroy — About</title>
-    <meta
-      name="description"
-      content="About Karan Seroy: ML engineering background, experience highlights, and working principles."
-    />
-
-    <meta property="og:title" content="Karan Seroy — About" />
-    <meta
-      property="og:description"
-      content="Background, approach, and engineering focus across ML systems and LLM workflows."
-    />
+    <meta name="color-scheme" content="dark" />
+    <title>Karan Seroy — Experience</title>
+    <meta name="description" content="Karan Seroy’s machine learning, software, and data experience, and education." />
+    <meta property="og:title" content="Karan Seroy — Experience" />
+    <meta property="og:description" content="Karan Seroy’s machine learning, software, and data experience, and education." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ks6573.github.io/about.html" />
+    <meta property="og:url" content="https://kseroy.me/about.html" />
+    <link rel="canonical" href="https://kseroy.me/about.html" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script>
-      (() => {
-        try {
-          const storedTheme = localStorage.getItem("portfolio-theme");
-          const theme =
-            storedTheme === "light" || storedTheme === "dark"
-              ? storedTheme
-              : matchMedia("(prefers-color-scheme: light)").matches
-                ? "light"
-                : "dark";
-          document.documentElement.dataset.theme = theme;
-          document.documentElement.style.colorScheme = theme;
-        } catch (_error) {
-          document.documentElement.dataset.theme = "dark";
-        }
-      })();
+      try {
+        const palette = localStorage.getItem('portfolio-palette');
+        if (['green', 'amber', 'ice'].includes(palette)) document.documentElement.dataset.palette = palette;
+      } catch { /* Use the default palette when storage is unavailable. */ }
     </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript><main><h1>Karan Seroy</h1><p>Machine learning engineer. I build things that make computers more useful.</p><p>This interactive portfolio uses JavaScript. You can also find my work on <a href="https://github.com/ks6573">GitHub</a>, connect on <a href="https://linkedin.com/in/karan-seroy/">LinkedIn</a>, or <a href="mailto:karan1011seroy@gmail.com">email me</a>.</p></main></noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

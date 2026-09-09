@@ -1,71 +1,37 @@
-export const featuredProjects = [
-  {
-    title: "SysControl",
-    focus: "Systems copilot",
-    impact: "91 real-time tools",
-    tech: "Python, MCP",
-    updated: "May 02",
-    description:
-      "AI systems copilot with 91 real-time tools across CPU, RAM, GPU, disk, network, processes, apps, shell, documents, web research, and more.",
-    url: "https://github.com/ks6573/SysControl",
+export const projects = {
+  syscontrol: {
+    name: 'SysControl', stack: 'Python / MCP', summary: 'A systems copilot for your machine.',
+    description: 'An AI systems copilot with tools for CPU, memory, GPU, disk, networking, processes, applications, documents, and web research.',
+    note: 'The interesting part is connecting the assistant to the machine: giving it useful, inspectable tools instead of making it guess what is happening.',
+    diagram: 'assistant\n   │\n   └── MCP tools\n         ├── cpu / memory / gpu\n         ├── disk / network / processes\n         └── apps / documents / research',
+    url: 'https://github.com/ks6573/SysControl',
   },
-  {
-    title: "Terminaude",
-    focus: "Claude-first terminal",
-    impact: "macOS terminal wrapper",
-    tech: "Swift, macOS",
-    updated: "Jun 05",
-    description:
-      "macOS terminal wrapper designed around a Claude-first workflow for command-line work.",
-    url: "https://github.com/ks6573/Terminaude",
+  terminaude: {
+    name: 'Terminaude', stack: 'Swift / macOS', summary: 'A terminal built around Claude.',
+    description: 'A macOS terminal wrapper designed around a Claude-first workflow for command-line work.',
+    note: 'A place to explore what native desktop software can do for AI-assisted development, while keeping the command line close at hand.',
+    diagram: 'macOS\n   │\n   └── Terminaude\n         └── Claude-first command-line workflow',
+    url: 'https://github.com/ks6573/Terminaude',
   },
-  {
-    title: "PerformanceIntelligence",
-    focus: "Device telemetry",
-    impact: "Live performance score",
-    tech: "Swift, iOS",
-    updated: "May 02",
-    description:
-      "iOS app that monitors real-time device health, calculates a live performance score, and recommends actions to prevent slowdowns.",
-    url: "https://github.com/ks6573/PerformanceIntelligence",
+  performance: {
+    name: 'PerformanceIntelligence', stack: 'Swift / iOS', summary: 'Device health you can act on.',
+    description: 'An iOS app that monitors device health, calculates a performance score, and recommends actions to prevent slowdowns.',
+    note: 'Making telemetry useful means connecting the measurement to an action the person holding the device can understand.',
+    diagram: 'device telemetry\n   └── performance score\n         └── recommended actions',
+    url: 'https://github.com/ks6573/PerformanceIntelligence',
   },
-  {
-    title: "OptionsTitan",
-    focus: "Quant modeling",
-    impact: "Multi-year options datasets",
-    tech: "Python, ML",
-    updated: "Feb 12",
-    description:
-      "Python-based options prediction and strategy modeling system using Greeks, technical indicators, VIX regimes, and multi-year datasets.",
-    url: "https://github.com/ks6573/OptionsTitan",
+  options: {
+    name: 'OptionsTitan', stack: 'Python / ML', summary: 'Options data and strategy models.',
+    description: 'An options prediction and strategy modeling system using Greeks, technical indicators, VIX regimes, and multi-year datasets.',
+    note: 'A modeling project built around market data, engineered features, and the behavior of options strategies.',
+    diagram: 'options datasets\n   └── Greeks / indicators / VIX regimes\n         └── prediction & strategy models',
+    url: 'https://github.com/ks6573/OptionsTitan',
   },
-  {
-    title: "PSA",
-    focus: "Applied security ML",
-    impact: "Password robustness model",
-    tech: "Python, Security",
-    updated: "Mar 16, 2025",
-    description:
-      "Python-based Password Strength Analyzer using machine learning to assess and visualize password robustness.",
-    url: "https://github.com/ks6573/PSA",
+  psa: {
+    name: 'PSA', stack: 'Python / ML', summary: 'Password robustness, visualized.',
+    description: 'A Password Strength Analyzer that uses machine learning to assess and visualize password robustness.',
+    note: 'An applied security ML project that turns a model assessment into visible feedback.',
+    diagram: 'password input\n   └── ML assessment\n         └── robustness visualization',
+    url: 'https://github.com/ks6573/PSA',
   },
-];
-
-export const focusAreas = [
-  {
-    title: "LLM evaluation",
-    detail: "Prompt optimization with DAG-style evaluation, ground-truth test cases, and DeepEval.",
-  },
-  {
-    title: "Data integrity",
-    detail: "Pipeline work for AI-powered network insights and reliable application data flows.",
-  },
-  {
-    title: "Applied ML",
-    detail: "Feature engineering, Random Forest models, time series analysis, and statistical analysis.",
-  },
-  {
-    title: "Technical communication",
-    detail: "Translate technical risk, testing, and project details for non-technical stakeholders.",
-  },
-];
+};
