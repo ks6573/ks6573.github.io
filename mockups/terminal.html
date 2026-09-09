@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-palette="green">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>karan@seroy:~ — terminal portfolio</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="terminal.css">
+  <script src="terminal-data.js" defer></script>
+  <script src="terminal-usage-data.js" defer></script>
+  <script src="terminal.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#screen">Skip to terminal content</a>
+  <div class="desktop-meta"><span><span class="accent">~/</span> kseroy.me</span><span>terminal portfolio <span class="muted">/ design study</span></span></div>
+  <div class="terminal">
+    <header class="titlebar">
+      <div class="window-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="window-title">karan@seroy: ~/portfolio</span>
+      <div class="palettes" role="group" aria-label="Terminal palette">
+        <button data-palette="green" aria-pressed="true" aria-label="Green phosphor palette"><i></i></button>
+        <button data-palette="amber" aria-pressed="false" aria-label="Amber palette"><i></i></button>
+        <button data-palette="ice" aria-pressed="false" aria-label="Ice palette"><i></i></button>
+      </div>
+    </header>
+    <nav class="tabs" aria-label="Workspace views">
+      <button class="tree-toggle" type="button" aria-label="Hide Files sidebar" title="Toggle Files sidebar (⌘/Ctrl+B)" aria-controls="file-tree" aria-expanded="true" aria-keyshortcuts="Meta+b Control+b"><svg viewBox="0 0 18 18" width="18" height="18" fill="none" aria-hidden="true"><rect x="2.5" y="3.5" width="13" height="11" rx="1"/><path d="M7 4v10"/><path class="sidebar-icon-pane" d="M3 4h4v10H3z"/></svg></button>
+      <button data-view="home" aria-current="page"><span>~</span> overview</button>
+      <button data-view="projects"><span>./</span> projects</button>
+      <button data-view="experience"><span>≡</span> experience</button>
+      <button data-view="contact"><span>@</span> contact</button>
+      <span class="tab-tail">portfolio / main</span>
+    </nav>
+    <div class="workspace">
+      <aside class="file-tree" id="file-tree" aria-label="Portfolio files">
+        <div class="tree-title">files <span>~/portfolio</span></div>
+        <nav aria-label="Browse files">
+          <button class="tree-file" data-view="home" aria-current="page"><span class="file-symbol">≡</span> README.md</button>
+          <details open class="tree-folder">
+            <summary><span class="folder-arrow" aria-hidden="true">▾</span> projects/ <span class="muted">5</span></summary>
+            <div class="tree-children">
+              <button data-project="syscontrol"><span>├─</span> SysControl/</button>
+              <button data-project="terminaude"><span>├─</span> Terminaude/</button>
+              <button data-project="performance"><span>├─</span> PerformanceIntelligence/</button>
+              <button data-project="options"><span>├─</span> OptionsTitan/</button>
+              <button data-project="psa"><span>└─</span> PSA/</button>
+            </div>
+          </details>
+          <button class="tree-file" data-view="experience"><span class="file-symbol">≡</span> experience.log</button>
+          <button class="tree-file" data-view="activity"><span class="file-symbol">▦</span> activity.dat</button>
+          <button class="tree-file" data-view="contact"><span class="file-symbol">@</span> contact.txt</button>
+          <button class="tree-file" data-view="help"><span class="file-symbol">?</span> help</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <p class="muted">mouse optional.</p>
+          <div><kbd>/</kbd><span>focus prompt</span></div>
+          <div><kbd>↑ ↓</kbd><span>command history</span></div>
+          <div><kbd>tab</kbd><span>complete a command</span></div>
+          <div><kbd>⌘/ctrl b</kbd><span>toggle files</span></div>
+          <div class="sidebar-rule"></div>
+          <a href="https://github.com/ks6573" target="_blank" rel="noreferrer">github.com/ks6573 <span>↗</span></a>
+          <button data-command="help">$ help <span>↵</span></button>
+        </div>
+      </aside>
+      <main id="screen" class="screen" tabindex="-1" aria-label="Terminal content">
+        <div id="view-content"></div>
+        <div id="command-log" aria-label="Command output"></div>
+      </main>
+    </div>
+    <form class="commandbar" id="command-form" autocomplete="off">
+      <label for="command-input"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span id="prompt-path">~</span><span class="prompt-dollar">$</span><span class="sr-only">Portfolio command</span></label>
+      <input id="command-input" type="text" placeholder="type help, or click around" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go" aria-describedby="command-hint">
+      <button type="submit" aria-label="Run portfolio command">enter <span aria-hidden="true">↵</span></button>
+    </form>
+    <footer class="statusbar"><span class="mode">PORTFOLIO</span><span class="status-file" id="status-file">~/README.md</span><span class="status-hint" id="command-hint">click a file or enter a command</span><span class="status-right">UTF-8 <span class="muted">│</span> browser shell</span></footer>
+  </div>
+  <footer class="desktop-footer"><span>Built by Karan Seroy. Still figuring things out.</span><div><button data-command="theme amber">[ theme amber ]</button><a href="index.html">[ previous studies ]</a><span>© 2026</span></div></footer>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+
+  <template id="home-template">
+    <div class="output-command"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span>~</span><span class="prompt-dollar">$</span> whoami</div>
+    <section class="identity" aria-label="About Karan Seroy">
+      <pre class="ascii" aria-hidden="true">██╗  ██╗███████╗
+██║ ██╔╝██╔════╝
+█████╔╝ ███████╗
+██╔═██╗ ╚════██║
+██║  ██╗███████║
+╚═╝  ╚═╝╚══════╝</pre>
+      <div class="identity-text"><h1>Karan Seroy</h1><div class="identity-rule" aria-hidden="true">──────────────────────────────</div><dl><div><dt>role</dt><dd>Machine learning engineer</dd></div><div><dt>work</dt><dd>SwiftLaw <span class="muted">/ applied AI</span></dd></div><div><dt>focus</dt><dd>Evaluation. Systems. Useful tools.</dd></div><div><dt>stack</dt><dd>Python, Swift, SQL</dd></div><div><dt>elsewhere</dt><dd><a href="https://github.com/ks6573" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://linkedin.com/in/karan-seroy/" target="_blank" rel="noreferrer">LinkedIn ↗</a></dd></div></dl><div class="ansi-swatches" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    </section>
+    <p class="personal-note"><span class="muted">#</span> I build things that make computers more useful.<br><span class="muted">#</span> Usually with ML. Sometimes with a better tool.</p>
+    <div class="output-command section-command"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span>~</span><span class="prompt-dollar">$</span> ls projects/ <span class="command-comment"># select a directory</span></div>
+    <div data-project-list></div>
+    <div class="output-command section-command activity-command"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span>~</span><span class="prompt-dollar">$</span> cat activity.dat <span class="command-comment"># GitHub snapshot</span></div>
+    <div data-activity class="activity-output"></div>
+  </template>
+
+  <template id="projects-template">
+    <div class="output-command"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span>~/projects</span><span class="prompt-dollar">$</span> ls</div>
+    <h1 class="file-heading">~/projects/</h1><p class="file-lead">Tools I’ve built and problems I’ve spent time on.</p><div data-project-list></div><p class="terminal-note">Open a directory above, or type <button class="inline-command" data-command="open syscontrol">open syscontrol</button>.</p><div class="text-section"><h2># Professional work</h2><p>At SwiftLaw, I work on document extraction, claim-level grounding, and multi-agent editing and drafting workflows.</p><button class="inline-command" data-view="experience">cat experience.log</button></div>
+  </template>
+
+  <template id="experience-template">
+    <div class="output-command"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span>~</span><span class="prompt-dollar">$</span> cat experience.log</div><h1 class="file-heading">Experience & education</h1>
+    <div class="experience-list"><article><div class="log-prefix">[ current ]</div><div><h2>SwiftLaw</h2><p class="accent">ML Engineer / AI Scientist</p><p>Building NLP extraction pipelines for fund formation documents, structured schemas, and claim-level grounding. Also working on multi-agent editing, drafting, and retrieval over chat history.</p></div></article><article><div class="log-prefix">[ 2025 ]</div><div><h2>cPacket Networks</h2><p class="accent">Machine Learning Intern · Jun–Dec</p><p>Built a system prompt optimizer with DAG-style evaluation, ground-truth test cases, and DeepEval. Evaluated behavior across Gemini, GPT, and Claude.</p></div></article><article><div class="log-prefix">[ 2022 ]</div><div><h2>PwC</h2><p class="accent">Data & Tech Consulting Intern</p><p>Data analysis, regression testing, and translating technical findings for stakeholders.</p></div></article><article><div class="log-prefix">[ 2021 ]</div><div><h2>Iovance Biotherapeutics</h2><p class="accent">Business Systems Analyst Intern</p><p>Development backlogs, Salesforce sandbox test data, SOPs, and infrastructure reporting.</p></div></article><article><div class="log-prefix">[ education ]</div><div><h2>Rochester Institute of Technology</h2><p>MS Data Science studies. BS Management Information Systems, 2023.</p></div></article></div>
+  </template>
+
+  <template id="contact-template">
+    <div class="output-command"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span>~</span><span class="prompt-dollar">$</span> cat contact.txt</div><h1 class="file-heading">Contact</h1><p class="file-lead">For interesting problems, useful tools, or just a conversation.</p><dl class="contact-list"><div><dt>email</dt><dd><a href="mailto:karan1011seroy@gmail.com">karan1011seroy@gmail.com ↗</a></dd></div><div><dt>github</dt><dd><a href="https://github.com/ks6573" target="_blank" rel="noreferrer">github.com/ks6573 ↗</a></dd></div><div><dt>linkedin</dt><dd><a href="https://linkedin.com/in/karan-seroy/" target="_blank" rel="noreferrer">linkedin.com/in/karan-seroy ↗</a></dd></div></dl><p class="terminal-note">Links open their destination. Nothing is sent from this terminal.</p>
+  </template>
+
+  <template id="activity-template">
+    <div class="output-command"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span>~</span><span class="prompt-dollar">$</span> cat activity.dat</div>
+    <h1 class="file-heading">Activity</h1>
+    <p class="file-lead activity-lead">GitHub contributions, ChatGPT + Codex, and Claude Code.<br><span class="muted">Saved snapshots · hover, focus, or tap a cell to inspect.</span></p>
+    <div class="activity-report">
+      <section class="activity-section" aria-labelledby="github-activity-title"><div class="activity-section-heading"><h2 id="github-activity-title"># GitHub</h2><span>contributions / day</span></div><div data-activity class="activity-output"></div></section>
+      <section class="activity-section" aria-labelledby="codex-activity-title"><div class="activity-section-heading"><h2 id="codex-activity-title"># ChatGPT + Codex</h2><span>token activity</span></div><div data-usage="codex"></div></section>
+      <section class="activity-section" aria-labelledby="claude-activity-title"><div class="activity-section-heading"><h2 id="claude-activity-title"># Claude Code</h2><span>messages / day</span></div><div data-usage="claude"></div></section>
+    </div>
+    <p class="terminal-note">Counts and totals reflect the saved exports, not live usage. ChatGPT + Codex cells show relative levels; Claude cells show dated message counts.</p>
+  </template>
+
+  <template id="help-template">
+    <div class="output-command"><span class="prompt-user">karan@seroy</span><span class="muted">:</span><span>~</span><span class="prompt-dollar">$</span> help</div><h1 class="file-heading">A small map of the place.</h1><p class="file-lead">This is an interactive portfolio. Commands navigate the site; they don’t run on your computer.</p><dl class="help-list"><div><dt>whoami / home</dt><dd>Return to the overview</dd></div><div><dt>ls / projects</dt><dd>List project directories</dd></div><div><dt>open syscontrol</dt><dd>Read a project’s README</dd></div><div><dt>cat experience.log</dt><dd>Read my work history</dd></div><div><dt>cat contact.txt</dt><dd>Find my email and profiles</dd></div><div><dt>activity</dt><dd>Inspect GitHub and AI usage</dd></div><div><dt>cd projects / cd ~</dt><dd>Change portfolio directory</dd></div><div><dt>pwd</dt><dd>Print the current virtual path</dd></div><div><dt>theme green / amber / ice</dt><dd>Change the terminal palette</dd></div><div><dt>clear</dt><dd>Clear the terminal output</dd></div></dl><p class="terminal-note">Press <kbd>/</kbd> to focus the prompt, <kbd>↑</kbd> and <kbd>↓</kbd> for history, or <kbd>Tab</kbd> to complete a command. Toggle the Files sidebar with <kbd>⌘/Ctrl+B</kbd> or the panel button. All files are clickable, too.</p>
+  </template>
+</body>
+</html>
