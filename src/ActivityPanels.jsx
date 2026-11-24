@@ -10,7 +10,7 @@ const utcDate = date => new Date(`${date}T00:00:00Z`);
 
 function validSnapshot(data, kind) {
   if (!data || typeof data !== 'object') return false;
-  if (kind === 'codex') return data.summary && Array.isArray(data.heatmap?.weeks) && data.heatmap.weeks.every(week => Array.isArray(week) && week.length === 7 && week.every(Number.isFinite));
+  if (kind === 'codex' && data.heatmap?.days === undefined) return data.summary && Array.isArray(data.heatmap?.weeks) && data.heatmap.weeks.every(week => Array.isArray(week) && week.length === 7 && week.every(Number.isFinite));
   const days = kind === 'github' ? data.days : data.heatmap?.days;
   return (kind === 'github' || data.summary) && Array.isArray(days) && days.every(day => /^\d{4}-\d{2}-\d{2}$/.test(day?.date) && Number.isFinite(utcDate(day.date).getTime()) && Number.isFinite(day.count) && Number.isFinite(day.level));
 }
@@ -103,20 +103,30 @@ export function GitHubActivity() {
   </div>;
 }
 
+function CodexHeatmap({ heatmap, generatedAt }) {
+  if (Array.isArray(heatmap.days)) {
+    const cells = datedCells(heatmap.days, 'Codex token');
+    return <Heatmap cells={cells} months={calendarMonths(cells)} label="Daily Codex tokens" initialReadout={cells.at(-1)?.label} generatedAt={generatedAt} />;
+  }
+  // Older profile screenshots recorded weekly grids of relative activity.
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const cells = heatmap.weeks.flatMap((week, weekIndex) => week.map((level, dayIndex) => ({ level, label: `Week ${weekIndex + 1}, ${days[dayIndex]}: activity level ${level} of 4` })));
+  return <Heatmap cells={cells} months={Array.isArray(heatmap.monthLabels) ? heatmap.monthLabels : []} label="Relative Codex token activity" initialReadout="relative activity / levels 0–4" generatedAt={generatedAt} />;
+}
+
 export function CodexActivity() {
   const state = useSnapshot('codex');
   if (!state.data) return <SnapshotStatus state={state} kind="codex" />;
-  const { summary, heatmap, insights = [], plugins = [], generatedAt } = state.data;
-  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const cells = heatmap.weeks.flatMap((week, weekIndex) => week.map((level, dayIndex) => ({ level, label: `Week ${weekIndex + 1}, ${days[dayIndex]}: activity level ${level} of 4` })));
-  const duration = Number.isFinite(summary.longestChatSeconds) ? `${Math.floor(summary.longestChatSeconds / 3600)}h ${Math.floor(summary.longestChatSeconds % 3600 / 60)}m` : '--';
+  const { summary, heatmap, insights, generatedAt } = state.data;
+  const minutes = Math.round((summary.longestRunningTurnSec ?? summary.longestChatSeconds) / 60);
+  const duration = Number.isFinite(minutes) ? `${Math.floor(minutes / 60)}h ${minutes % 60}m` : '--';
   return <div data-usage="codex">
     <Metrics items={[
-      ['lifetime tokens', tokenCount(summary.lifetimeTokens)], ['peak tokens', tokenCount(summary.peakTokens)], ['longest chat', duration],
+      ['lifetime tokens', tokenCount(summary.lifetimeTokens)], ['peak daily tokens', tokenCount(summary.peakDailyTokens ?? summary.peakTokens)], ['longest task', duration],
       ['current streak', dayCount(summary.currentStreakDays)], ['longest streak', dayCount(summary.longestStreakDays)],
     ]} />
-    <Heatmap cells={cells} months={Array.isArray(heatmap.monthLabels) ? heatmap.monthLabels : []} label="ChatGPT and Codex token activity; relative levels 0 to 4" initialReadout="relative activity / levels 0–4" generatedAt={generatedAt} />
-    {Array.isArray(insights) && Array.isArray(plugins) && <details className="usage-details"><summary>insights + most used plugins</summary><div className="usage-detail-columns"><Metrics items={insights.map(item => [item.label, item.value])} /><Metrics items={plugins.map(item => [item.name, `${number(item.runs)} runs`])} /></div></details>}
+    <CodexHeatmap heatmap={heatmap} generatedAt={generatedAt} />
+    {Array.isArray(insights) && insights.length > 0 && <details className="usage-details"><summary>ChatGPT profile insights</summary><div className="usage-detail-columns"><Metrics items={insights.map(item => [item.label, item.value])} /></div></details>}
   </div>;
 }
 

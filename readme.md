@@ -22,7 +22,7 @@ GitHub Actions builds and deploys `dist/` to GitHub Pages on pushes to `main`. `
 
 ## Activity and projects
 
-The overview displays GitHub activity. `activity.dat` groups GitHub, ChatGPT/Codex, and Claude charts, reading the existing JSON exports under `public/data/`. Every chart displays its snapshot date. ChatGPT/Codex exports contain relative weekly intensity levels; dated daily values are not fabricated. Claude includes exact daily message counts and a recent trend.
+The overview displays GitHub activity. `activity.dat` groups GitHub, ChatGPT/Codex, and Claude charts from the JSON snapshots under `public/data/`. Every chart displays its snapshot date. The Codex chart uses exact daily token counts from the signed-in Codex client's `account/usage/read` response. Its colors and profile insights come from the Daily view on the ChatGPT profile. The calendar ends on the last reported usage date. Regular ChatGPT chat usage is outside the scope of these counts. Claude shows daily message counts and a recent trend.
 
 Use the existing `sync:github-contributions` and `sync:claude-usage` scripts when intentionally refreshing data. A normal build does not refresh or access private usage logs. Each chart handles loading, unavailable/malformed data, and retry independently. Heatmaps support pointer, touch, and keyboard inspection with one Tab stop per chart.
 

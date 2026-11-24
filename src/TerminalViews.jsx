@@ -42,12 +42,11 @@ export function ActivityView() {
   return <>
     <div className="output-command"><span className="prompt-user">karan@seroy</span><span className="muted">:</span><span>~</span><span className="prompt-dollar">$</span> cat activity.dat</div>
     <h1 className="file-heading">Activity</h1>
-    <p className="file-lead activity-lead">GitHub contributions, ChatGPT + Codex, and Claude Code.<br /><span className="muted">Saved snapshots · hover, focus, or tap a cell to inspect.</span></p>
+    <p className="file-lead activity-lead">GitHub contributions, Codex tokens from my ChatGPT profile, and Claude Code messages.<br /><span className="muted">Saved snapshots · hover, focus, or tap a cell to inspect.</span></p>
     <div className="activity-report">
       <section className="activity-section" aria-labelledby="github-activity-title"><div className="activity-section-heading"><h2 id="github-activity-title"># GitHub</h2><span>contributions / day</span></div><GitHubActivity /></section>
-      <section className="activity-section" aria-labelledby="codex-activity-title"><div className="activity-section-heading"><h2 id="codex-activity-title"># ChatGPT + Codex</h2><span>token activity</span></div><CodexActivity /></section>
+      <section className="activity-section" aria-labelledby="codex-activity-title"><div className="activity-section-heading"><h2 id="codex-activity-title"># ChatGPT + Codex</h2><span>Codex tokens / day</span></div><CodexActivity /></section>
       <section className="activity-section" aria-labelledby="claude-activity-title"><div className="activity-section-heading"><h2 id="claude-activity-title"># Claude Code</h2><span>messages / day</span></div><ClaudeActivity /></section>
     </div>
-    <p className="terminal-note">Counts and totals reflect the saved exports, not live usage. ChatGPT + Codex cells show relative levels; Claude cells show dated message counts.</p>
   </>;
 }
